@@ -10,7 +10,7 @@ class PollsController < ApplicationController
   # POST /polls
   def create
     @poll = Poll.create!(poll_params)
-    json_response(@poll, :created)
+    json_response(@poll)
   end
 
   # GET /polls/:id
