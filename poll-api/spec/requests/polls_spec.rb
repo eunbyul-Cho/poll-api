@@ -15,6 +15,7 @@ RSpec.describe 'Polls API', type: :request do
       expect(json).not_to be_empty
       expect(json.size).to eq(10)
     end
+
     it 'returns status code 200' do
       expect(response).to have_http_status(200)
     end
@@ -34,6 +35,7 @@ RSpec.describe 'Polls API', type: :request do
         expect(response).to have_http_status(200)
       end
     end
+
     context 'when the record does not exist' do
       let(:poll_id) { 100 }
 
@@ -42,58 +44,60 @@ RSpec.describe 'Polls API', type: :request do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find poll/)
+        expect(response.body).to match(/Couldn't find Poll/)
       end
     end
   end
-# Test suite for POST /polls
-describe 'POST /polls' do
-  # valid payload
-  let(:valid_attributes) { { name: 'Learn Elm' } }
 
-  context 'when the request is valid' do
-    before { post '/polls', params: valid_attributes }
+  # Test suite for POST /polls
+  describe 'POST /polls' do
+    # valid payload
+    let(:valid_attributes) { { name: 'Learn Elm' } }
 
-    it 'creates a poll' do
-      expect(json['name']).to eq('Learn Elm')
+    context 'when the request is valid' do
+      before { post '/polls', params: valid_attributes }
+
+      it 'creates a poll' do
+        expect(json['name']).to eq('Learn Elm')
+      end
+
+      it 'returns status code 200' do
+        expect(response).to have_http_status(200)
+      end
     end
 
-    it 'returns status code 201' do
-      expect(response).to have_http_status(201)
+    context 'when the request is invalid' do
+      before { post '/polls', params: { title: 'Foobar' } }
+
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
     end
   end
-  context 'when the request is invalid' do
-    before { post '/polls', params: { name: 'Foobar' } }
 
-    it 'returns status code 422' do
-      expect(response).to have_http_status(422)
+  # Test suite for PUT /polls/:id
+  describe 'PUT /polls/:id' do
+    let(:valid_attributes) { { title: 'Shopping' } }
+
+    context 'when the record exists' do
+      before { put "/polls/#{poll_id}", params: valid_attributes }
+
+      it 'updates the record' do
+        expect(response.body).to be_empty
+      end
+
+      it 'returns status code 204' do
+        expect(response).to have_http_status(204)
+      end
     end
-
-
   end
-end
-# Test suite for PUT /polls/:id
-describe 'PUT /polls/:id' do
-  let(:valid_attributes) { { name: 'Shopping' } }
 
-  context 'when the record exists' do
-    before { put "/polls/#{poll_id}", params: valid_attributes }
-
-    it 'updates the record' do
-      expect(response.body).to be_empty
-    end
+  # Test suite for DELETE /polls/:id
+  describe 'DELETE /polls/:id' do
+    before { delete "/polls/#{poll_id}" }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
     end
   end
-end
-# Test suite for DELETE /polls/:id
-describe 'DELETE /polls/:id' do
-  before { delete "/polls/#{poll_id}" }
-
-  it 'returns status code 204' do
-    expect(response).to have_http_status(204)
-  end
-end
 end

@@ -33,7 +33,7 @@ class PollsController < ApplicationController
 
   def poll_params
     # whitelist params
-    params.permit(:title)
+    params.permit(:name)
   end
   def set_poll
     @poll = Poll.find(params[:id])
