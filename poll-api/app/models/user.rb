@@ -3,7 +3,7 @@ class User < ApplicationRecord
    has_secure_password
 
    # Model associations
-   has_many :polls, foreign_key: :created_by
+   has_many :polls, foreign_key: :user_id
    # Validations
    validates_presence_of :name, :email, :password_digest
 end
