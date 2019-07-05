@@ -1,17 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe 'Polls API', type: :request do
-  # initialize test data
-  let!(:polls) { create_list(:poll, 10) }
+  # add polls owner
+  let(:user) { create(:user) }
+  let!(:polls) { create_list(:polls, 10, user_id:1 ) }
   let(:poll_id) { polls.first.id }
+  # authorize request
+  let(:headers) { valid_headers }
 
-  # Test suite for GET /polls
   describe 'GET /polls' do
-    # make HTTP get request before each example
-    before { get '/polls' }
+    # update request with headers
+    before { get '/polls', params: {}, headers: headers }
 
     it 'returns polls' do
-      # Note `json` is a custom helper to parse JSON responses
       expect(json).not_to be_empty
       expect(json.size).to eq(10)
     end
@@ -21,9 +22,8 @@ RSpec.describe 'Polls API', type: :request do
     end
   end
 
-  # Test suite for GET /polls/:id
   describe 'GET /polls/:id' do
-    before { get "/polls/#{poll_id}" }
+    before { get "/polls/#{poll_id}", params: {}, headers: headers }
 
     context 'when the record exists' do
       it 'returns the poll' do
@@ -44,43 +44,49 @@ RSpec.describe 'Polls API', type: :request do
       end
 
       it 'returns a not found message' do
-        expect(response.body).to match(/Couldn't find Poll/)
+        expect(response.body).to match(/Couldn't find poll/)
       end
     end
   end
 
-  # Test suite for POST /polls
   describe 'POST /polls' do
-    # valid payload
-    let(:valid_attributes) { { name: 'Learn Elm' } }
+     let(:valid_attributes) do
+      # send json payload
+      { title: 'Learn Elm', created_by: user.id.to_s }.to_json
+    end
 
-    context 'when the request is valid' do
-      before { post '/polls', params: valid_attributes }
+    context 'when request is valid' do
+      before { post '/polls', params: valid_attributes, headers: headers }
 
       it 'creates a poll' do
-        expect(json['name']).to eq('Learn Elm')
+        expect(json['title']).to eq('Learn Elm')
       end
 
-      it 'returns status code 200' do
-        expect(response).to have_http_status(200)
+      it 'returns status code 201' do
+        expect(response).to have_http_status(201)
       end
     end
 
     context 'when the request is invalid' do
-      before { post '/polls', params: { title: 'Foobar' } }
+      let(:invalid_attributes) { { title: nil }.to_json }
+      before { post '/polls', params: invalid_attributes, headers: headers }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
       end
+
+      it 'returns a validation failure message' do
+        expect(json['message'])
+          .to match(/Validation failed: Title can't be blank/)
+      end
     end
   end
 
-  # Test suite for PUT /polls/:id
   describe 'PUT /polls/:id' do
-    let(:valid_attributes) { { title: 'Shopping' } }
+    let(:valid_attributes) { { title: 'Shopping' }.to_json }
 
     context 'when the record exists' do
-      before { put "/polls/#{poll_id}", params: valid_attributes }
+      before { put "/polls/#{poll_id}", params: valid_attributes, headers: headers }
 
       it 'updates the record' do
         expect(response.body).to be_empty
@@ -92,9 +98,8 @@ RSpec.describe 'Polls API', type: :request do
     end
   end
 
-  # Test suite for DELETE /polls/:id
   describe 'DELETE /polls/:id' do
-    before { delete "/polls/#{poll_id}" }
+    before { delete "/polls/#{poll_id}", params: {}, headers: headers }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
