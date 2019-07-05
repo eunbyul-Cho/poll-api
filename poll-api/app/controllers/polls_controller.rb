@@ -15,7 +15,8 @@ class PollsController < ApplicationController
 
   # GET /polls/:id
   def show
-    json_response(@poll)
+    data = {id:@poll.id,name:@poll.name,candidates:@poll.candidates}
+    json_response(data)
   end
    # PUT /polls/:id
    def update
