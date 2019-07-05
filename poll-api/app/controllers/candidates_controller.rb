@@ -19,8 +19,9 @@ class CandidatesController < ApplicationController
   end
   # PUT /polls/:poll_id/candidates/:id
   def update
-    @candidate.update(candidate_params)
-    head :no_content
+    @candidate_count = @candidate.count
+    @candidate.update(count:@candidate_count +1)
+    render json: @candidate
   end
 
   # DELETE /polls/:poll_id/candidates/:id
