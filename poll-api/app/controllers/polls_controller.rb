@@ -6,11 +6,14 @@ class PollsController < ApplicationController
     @polls = Poll.all
     json_response(@polls)
   end
-
   # POST /polls
   def create
-    @poll = Poll.create!(poll_params)
-    json_response(@poll)
+    @poll = Poll.create(name:poll_params["name"],user_id:poll_params["user_id"])
+    candidates_params = JSON.parse(poll_params["candidates"])
+    candidates_params.each do |candidate|
+      @poll.candidates.create!(candidate)
+    end
+
   end
 
   # GET /polls/:id
@@ -34,8 +37,10 @@ class PollsController < ApplicationController
 
   def poll_params
     # whitelist params
-    params.permit(:name,:user_id)
+    params.permit(:name, :user_id, :candidates)
   end
+
+
   def set_poll
     @poll = Poll.find(params[:id])
   end
