@@ -21,7 +21,7 @@ class CandidatesController < ApplicationController
   # POST /polls/:poll_id/candidates
   def create
     @poll.candidates.create!(candidate_params)
-    json_response(@poll)
+
   end
   # PUT /polls/:poll_id/candidates/:id
   def update
