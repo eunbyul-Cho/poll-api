@@ -11,7 +11,6 @@ class CandidatesController < ApplicationController
 
   # GET /polls/:poll_id/candidates/:id
   def show
-    #json_response(@candidate)
    # respond_with @poll.as_json
    json_response(@candidate.as_json(
     only: [:id, :name, :count],

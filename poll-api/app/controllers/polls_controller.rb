@@ -23,7 +23,7 @@ class PollsController < ApplicationController
     json_response(data)
   end
    # PUT /polls/:id
-   def update
+  def update
     @poll.update(poll_params)
     head :no_content
   end
