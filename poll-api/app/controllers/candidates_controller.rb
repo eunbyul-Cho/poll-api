@@ -4,12 +4,18 @@ class CandidatesController < ApplicationController
 
   # GET /polls/:poll_id/candidates
   def index
-    json_response(@poll.candidates)
+    json_response(@poll.candidates.as_json(
+      only: [:id, :name, :count],
+    ))
   end
 
   # GET /polls/:poll_id/candidates/:id
   def show
-    json_response(@candidate)
+    #json_response(@candidate)
+   # respond_with @poll.as_json
+   json_response(@candidate.as_json(
+    only: [:id, :name, :count],
+  ))
   end
 
   # POST /polls/:poll_id/candidates
@@ -21,7 +27,8 @@ class CandidatesController < ApplicationController
   def update
     @candidate_count = @candidate.count
     @candidate.update(count:@candidate_count +1)
-    render json: @candidate
+    render json: @candidate.as_json(
+      only: [:id, :name, :count])
   end
 
   # DELETE /polls/:poll_id/candidates/:id
@@ -43,4 +50,5 @@ class CandidatesController < ApplicationController
   def set_poll_candidate
     @candidate = @poll.candidates.find_by!(id: params[:id]) if @poll
   end
+
 end

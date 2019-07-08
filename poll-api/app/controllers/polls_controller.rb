@@ -4,7 +4,7 @@ class PollsController < ApplicationController
   # GET /polls
   def index
     @polls = Poll.all
-    json_response(@polls)
+    json_response(@polls.as_json(only: [:id, :name, :user_id]))
   end
   # POST /polls
   def create
@@ -18,7 +18,8 @@ class PollsController < ApplicationController
 
   # GET /polls/:id
   def show
-    data = {id:@poll.id,name:@poll.name,candidates:@poll.candidates}
+    candidates = @poll.candidates.as_json(only: [:id, :name, :count])
+    data = {id:@poll.id,name:@poll.name,user_id:@poll.user_id,candidates:candidates}
     json_response(data)
   end
    # PUT /polls/:id
