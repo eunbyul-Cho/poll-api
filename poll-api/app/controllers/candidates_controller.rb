@@ -40,7 +40,7 @@ class CandidatesController < ApplicationController
   private
 
   def candidate_params
-    params.permit(:name, :count)
+    params.permit(:id, :name, :count)
   end
 
   def set_poll
