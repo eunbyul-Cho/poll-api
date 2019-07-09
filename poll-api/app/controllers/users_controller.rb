@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  require 'message'
+  require 'Message'
   skip_before_action :authorize_request, only: :create
     # POST /signup
     # return authenticated token upon signup
