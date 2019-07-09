@@ -8,7 +8,7 @@ class Poll extends Component {
       inputValue: ""
     };
   }
-  getVotes() {
+  getPolls() {
     let token = "Bearer " + localStorage.getItem("jwt");
     axios
       .get({
@@ -26,7 +26,7 @@ class Poll extends Component {
     this.setState({ inputValue: e.target.value });
   };
   componentDidMount() {
-    this.getVotes();
+    this.getPolls();
   }
   render() {
     return (

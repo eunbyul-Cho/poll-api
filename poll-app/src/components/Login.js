@@ -23,7 +23,6 @@ class Login extends Component {
         this.setState({
           inputValue: ""
         });
-        return <Redirect to="/home" />;
       })
       .catch(error => console.log(error));
   };
