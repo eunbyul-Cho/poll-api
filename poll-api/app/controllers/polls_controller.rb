@@ -5,7 +5,6 @@ class PollsController < ApplicationController
   def index
     @polls = Poll.all
    json_response(@polls.as_json(only: [:id, :name, :user_id]))
-
   end
   # POST /polls
   def create
