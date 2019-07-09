@@ -10,7 +10,7 @@ function App() {
       <div className="header">
         <h1>Poll</h1>
       </div>
-      <PollList />
+      <Main />
     </div>
   );
 }

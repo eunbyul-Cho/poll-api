@@ -1,13 +1,15 @@
 class PollsController < ApplicationController
-  before_action :set_poll, only: [:show, :update, :destroy]
+  before_action :set_poll, only: [ :show, :update, :destroy]
 
   # GET /polls
   def index
     @polls = Poll.all
-    json_response(@polls.as_json(only: [:id, :name, :user_id]))
+   json_response(@polls.as_json(only: [:id, :name, :user_id]))
+
   end
   # POST /polls
   def create
+    #candidates_atrribute
     @poll = Poll.create(name:poll_params["name"],user_id:@current_user.id)
     candidates_params = JSON.parse(poll_params["candidates"])
     candidates_params.each do |candidate|
@@ -18,6 +20,7 @@ class PollsController < ApplicationController
 
   # GET /polls/:id
   def show
+
     candidates = @poll.candidates.as_json(only: [:id, :name, :count])
     data = {id:@poll.id,name:@poll.name,user_id:@poll.user_id,candidates:candidates}
     json_response(data)

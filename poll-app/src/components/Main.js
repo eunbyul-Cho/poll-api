@@ -23,7 +23,7 @@ class Main extends Component {
 }
 const AppRouter = () => (
   <Router>
-    <Route exact path="/polls" component={PollList} />
+    <Route exact path="/pollList" component={PollList} />
     <Route exact path="/login" component={Login} />
   </Router>
 );
