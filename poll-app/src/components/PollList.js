@@ -9,12 +9,13 @@ class Poll extends Component {
     };
   }
   getPolls() {
+    //TODODODODODODO
     let token = "Bearer " + localStorage.getItem("jwt");
     axios
       .get({
         method: "get",
-        url: "/api/polls",
-        headers: { Authorization: token }
+        url: "http://localhost:3001/api/polls",
+        headers: { auth_token: token }
       })
       .then(response => {
         this.setState({ polls: response.data });

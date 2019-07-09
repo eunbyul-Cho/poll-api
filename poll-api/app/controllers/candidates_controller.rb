@@ -1,27 +1,21 @@
 class CandidatesController < ApplicationController
-  before_action :set_poll
   before_action :set_poll_candidate, only: [:show, :update, :destroy]
+  before_action :set_poll
 
-  # GET /polls/:poll_id/candidates
-  def index
-    json_response(@poll.candidates.as_json(
-      only: [:id, :name, :count],
-    ))
-  end
 
-  # GET /polls/:poll_id/candidates/:id
+
+
+  # GET candidates/:id
   def show
-   # respond_with @poll.as_json
-   json_response(@candidate.as_json(
-    only: [:id, :name, :count],
-  ))
+   json_response(@candidate.as_json( only: [:id, :name, :count]))
   end
 
   # POST /polls/:poll_id/candidates
   def create
-    @poll.candidates.create!(candidate_params)
-
+   Poll.find(params[:poll_id]).candidates.create!(candidate_params)
+    render json:params
   end
+
   # PUT /polls/:poll_id/candidates/:id
   def update
     @candidate_count = @candidate.count
@@ -43,11 +37,11 @@ class CandidatesController < ApplicationController
   end
 
   def set_poll
-    @poll = Poll.find(params[:poll_id])
+    @poll = @candidate.poll if @candidate
   end
 
   def set_poll_candidate
-    @candidate = @poll.candidates.find_by!(id: params[:id]) if @poll
+    @candidate =  Candidate.find_by(id: params[:id])
   end
 
 end

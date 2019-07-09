@@ -1,7 +1,7 @@
 import React from "react";
 
 import Main from "./components/Main";
-
+import PollList from "./components/PollList";
 import "./App.css";
 
 function App() {
@@ -10,7 +10,7 @@ function App() {
       <div className="header">
         <h1>Poll</h1>
       </div>
-      <Main />
+      <PollList />
     </div>
   );
 }
