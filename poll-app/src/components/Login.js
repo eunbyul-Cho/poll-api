@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Route, Redirect } from "react-router";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +23,7 @@ class Login extends Component {
         this.setState({
           inputValue: ""
         });
+        return <Redirect to="/home" />;
       })
       .catch(error => console.log(error));
   };
@@ -51,9 +53,6 @@ class Login extends Component {
             onChange={this.handlePasswordChange}
           />
           <button onClick={this.login}>submit</button>
-        </div>
-        <div className="listWrapper">
-          <ul className="taskList" />
         </div>
       </div>
     );
