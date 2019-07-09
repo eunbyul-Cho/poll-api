@@ -1,8 +1,14 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const PollItem = props => {
   const { poll } = props;
 
-  return <div>{poll.name}</div>;
+  return (
+    <Link to={{ pathname: "/detail", state: { poll: poll } }}>
+      <div>
+        <div>{poll.name}</div>
+      </div>
+    </Link>
+  );
 };
 export default PollItem;
