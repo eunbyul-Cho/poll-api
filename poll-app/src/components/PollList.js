@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import PollItem from "./PollItem";
 class Poll extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,13 @@ class Poll extends Component {
       <div>
         <h1>Poll List</h1>
         <div className="listWrapper">
-          <ul className="taskList" />
+          {this.state.polls.map(poll => (
+            <PollItem
+              poll={poll}
+              handleItemClick={this.handleItemClick}
+              key={poll.name}
+            />
+          ))}
         </div>
       </div>
     );
