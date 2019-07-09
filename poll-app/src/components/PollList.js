@@ -21,18 +21,7 @@ class Poll extends Component {
       })
       .catch(error => console.log(error));
   }
-  createVote = e => {
-    if (e.key === "Enter" && !(e.target.value === "")) {
-      axios
-        .post("/polls", { polls: { name: e.target.value, user_id: 1 } })
-        .then(response => {
-          this.setState({
-            inputValue: ""
-          });
-        })
-        .catch(error => console.log(error));
-    }
-  };
+
   handleChange = e => {
     this.setState({ inputValue: e.target.value });
   };
@@ -42,6 +31,7 @@ class Poll extends Component {
   render() {
     return (
       <div>
+        <h1>Poll List</h1>
         <div className="listWrapper">
           <ul className="taskList" />
         </div>

@@ -22,10 +22,10 @@ class Main extends Component {
   }
 }
 const AppRouter = () => (
-  <Switch>
-    <Route exact path="/home" component={PollList} />
-    <Route path="/login" component={Login} />
-  </Switch>
+  <Router>
+    <Route exact path="/polls" component={PollList} />
+    <Route exact path="/login" component={Login} />
+  </Router>
 );
 
 export default Main;
