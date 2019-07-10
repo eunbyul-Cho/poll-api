@@ -5,13 +5,13 @@ const Detail = props => {
   const candidates = pollData.candidates;
   return (
     <div>
-      <div>{pollData.name}</div>
-      <div>
+      <div className="detail-header">{pollData.name}</div>
+      <div className="candidates-container">
         <div>
           {candidates.map(candidate => (
-            <div key={candidate.name}>
-              <div>{candidate.name}</div>
-              <div>{candidate.count}</div>
+            <div key={candidate.name} classNmae="candidate-container">
+              <div>{`${candidate.name}:${candidate.count}`}</div>
+              <button className="vote-btn">투표하기</button>
             </div>
           ))}
         </div>

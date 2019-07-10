@@ -31,3 +31,12 @@
     transform: rotate(360deg);
   }
 }
+.detail-header {
+  font-size: 1.5em;
+}
+.candidates-container {
+  margin: 10px;
+}
+.candidate-container {
+  display: flex;
+}
