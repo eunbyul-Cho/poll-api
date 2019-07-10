@@ -38,7 +38,7 @@ class PollsController < ApplicationController
 
   def poll_params
     # whitelist params
-    params.require(:poll).permit(:name, :user_id, candidates_attributes: [:id, :name, :count, :_destroy])
+    params.require(:poll).permit(:name, :user_id, candidates_attributes: [:id, :name, :count, :_destroy]).merge(user_id: current_user.id)
   end
 
 
