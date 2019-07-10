@@ -10,12 +10,11 @@ class Detail extends Component {
     };
   }
   vote = candidateId => {
-    //TODO: PUT 확인받기
     let token = "Bearer " + localStorage.getItem("jwt");
     axios
       .put(
         `api/candidates/${candidateId}`,
-        // 왜 저렇게 Id를 보내야 하는가...
+
         { id: candidateId },
         {
           headers: { Authorization: token }

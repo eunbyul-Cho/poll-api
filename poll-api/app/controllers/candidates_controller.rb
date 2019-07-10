@@ -20,8 +20,8 @@ class CandidatesController < ApplicationController
   def update
     @candidate_count = @candidate.count
     @candidate.update(count:@candidate_count +1)
-    render json:  @poll.candidates.as_json(
-      only: [:id, :name, :count])
+    render json:  @poll.candidates.as_json(only: [:id, :name, :count])
+
   end
 
   # DELETE /polls/:poll_id/candidates/:id
