@@ -1,14 +1,16 @@
-import React from "react";
+import React, { Component } from "react";
 import Chart from "./Chart";
 import axios from "axios";
 
-const Detail = props => {
-  const { pollData } = props.location.state;
-  const candidates = pollData.candidates;
-
-  const vote = candidateId => {
-    //TODO: PUT  고치기
-
+class Detail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      candidates: this.props.location.state.pollData.candidates
+    };
+  }
+  vote = candidateId => {
+    //TODO: PUT 확인받기
     let token = "Bearer " + localStorage.getItem("jwt");
     axios
       .put(
@@ -19,28 +21,36 @@ const Detail = props => {
         }
       )
       .then(response => {
-        console.log(response);
+        console.log(response.data);
+        this.setState({ candidates: response.data });
       })
       .catch(error => console.log(error));
   };
-  return (
-    <div>
-      <div className="detail-header">{pollData.name}</div>
-      <div className="candidates-container">
-        <div>
-          {candidates.map(candidate => (
-            <div key={candidate.name} className="candidate-container">
-              <div>{`${candidate.name}:${candidate.count}`}</div>
-              <button className="vote-btn" onClick={() => vote(candidate.id)}>
-                투표하기
-              </button>
-            </div>
-          ))}
+  render() {
+    const { pollData } = this.props.location.state;
+    return (
+      <div>
+        <div className="detail-header">{pollData.name}</div>
+        <div className="candidates-container">
+          <div>
+            {this.state.candidates.map(candidate => (
+              <div key={candidate.name} className="candidate-container">
+                <div>{`${candidate.name}:${candidate.count}`}</div>
+                <button
+                  className="vote-btn"
+                  onClick={() => this.vote(candidate.id)}
+                >
+                  투표하기
+                </button>
+              </div>
+            ))}
+          </div>
+          <Chart candidates={this.state.candidates} />
+          <div />
         </div>
-        <Chart candidates={candidates} />
-        <div />
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
+
 export default Detail;

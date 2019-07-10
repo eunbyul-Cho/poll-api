@@ -15,7 +15,6 @@ class Poll extends Component {
       .get("api/polls", { headers: { Authorization: token } })
       .then(response => {
         this.setState({ polls: response.data });
-        console.log(response);
       })
       .catch(error => console.log(error));
   }

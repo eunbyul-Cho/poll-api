@@ -9,12 +9,12 @@ class PollsController < ApplicationController
   # POST /polls
   def create
     #candidates_atrribute
-    @poll = Poll.create(name:poll_params["name"],user_id:@current_user.id)
-    candidates_params = JSON.parse(poll_params["candidates"])
-    candidates_params.each do |candidate|
-      @poll.candidates.create!(candidate)
-    end
-  render json: candidates_params
+    #@poll = Poll.create(name:poll_params["name"],user_id:@current_user.id)
+    #candidates_params = JSON.parse(poll_params["candidates"])
+    #candidates_params.each do |candidate|
+     # @poll.candidates.create!(candidate)
+    # end
+  render json: poll_params
   end
 
   # GET /polls/:id
