@@ -1,35 +1,23 @@
-import React, { Component } from "react";
-import axios from "axios";
-class Detail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: []
-    };
-  }
-  getPollData() {
-    let token = "Bearer " + localStorage.getItem("jwt");
-    const { poll } = this.props.location.state;
-    let targetId = poll.id;
-    axios
-      .get(`api/polls/${targetId}`, { headers: { Authorization: token } })
-      .then(response => {
-        console.log(response.data);
-      })
-      .catch(error => console.log(error));
-  }
-  componentDidMount() {
-    this.getPollData();
-  }
-  render() {
-    const { poll } = this.props.location.state;
+import React from "react";
 
-    return (
+const Detail = props => {
+  const { pollData } = props.location.state;
+  const candidates = pollData.candidates;
+  return (
+    <div>
+      <div>{pollData.name}</div>
       <div>
-        <div>{poll.name}</div>
+        <div>
+          {candidates.map(candidate => (
+            <div>
+              <div>{candidate.name}</div>
+              <div>{candidate.count}</div>
+            </div>
+          ))}
+        </div>
+        <div />
       </div>
-    );
-  }
-}
-
+    </div>
+  );
+};
 export default Detail;
