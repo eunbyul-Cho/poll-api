@@ -15,6 +15,7 @@ class Main extends Component {
   render() {
     return (
       <Router>
+        <Nav />
         <div className="container">
           <AppRouter />
         </div>
@@ -22,13 +23,25 @@ class Main extends Component {
     );
   }
 }
+const Nav = () => {
+  return (
+    <ul>
+      <li>
+        <NavLink to="pollList">Polls</NavLink>
+      </li>
+      <li>
+        <NavLink to="/login">Login</NavLink>
+      </li>
+    </ul>
+  );
+};
 const AppRouter = () => (
-  <Router>
-    <Route exact path="/pollList" component={PollList} />
-    <Route exact path="/login" component={Login} />
-    <Route exact path="/detail" component={Detail} />
-    <Route exact path="/signup" component={SignUp} />
-  </Router>
+  <Switch>
+    <Route path="/pollList" component={PollList} />
+    <Route path="/login" component={Login} />
+    <Route path="/detail" component={Detail} />
+    <Route path="/signup" component={SignUp} />
+  </Switch>
 );
 
 export default Main;

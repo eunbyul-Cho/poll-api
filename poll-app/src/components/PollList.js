@@ -11,7 +11,6 @@ class Poll extends Component {
   }
   getPolls() {
     let token = "Bearer " + localStorage.getItem("jwt");
-    console.log(token);
     axios
       .get("api/polls", { headers: { Authorization: token } })
       .then(response => {

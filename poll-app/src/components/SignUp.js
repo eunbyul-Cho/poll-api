@@ -21,7 +21,6 @@ class SignUp extends Component {
     axios
       .post("/signup", request)
       .then(response => {
-        console.log(response);
         localStorage.setItem("jwt", response.data.auth_token);
         this.setState({
           inputValue: ""
