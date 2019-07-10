@@ -11,6 +11,8 @@ import Login from "./Login.js";
 import PollList from "./PollList.js";
 import Detail from "./Detail.js";
 import SignUp from "./SignUp";
+import CreatePoll from "./CreatePoll";
+
 class Main extends Component {
   render() {
     return (
@@ -32,6 +34,9 @@ const Nav = () => {
       <li>
         <NavLink to="/login">Login</NavLink>
       </li>
+      <li>
+        <NavLink to="/createPoll">CreatePoll</NavLink>
+      </li>
     </ul>
   );
 };
@@ -41,6 +46,7 @@ const AppRouter = () => (
     <Route path="/login" component={Login} />
     <Route path="/detail" component={Detail} />
     <Route path="/signup" component={SignUp} />
+    <Route path="/createPoll" component={CreatePoll} />
   </Switch>
 );
 
