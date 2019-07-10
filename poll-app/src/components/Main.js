@@ -10,6 +10,7 @@ import {
 import Login from "./Login.js";
 import PollList from "./PollList.js";
 import Detail from "./Detail.js";
+import SignUp from "./SignUp";
 class Main extends Component {
   render() {
     return (
@@ -26,6 +27,7 @@ const AppRouter = () => (
     <Route exact path="/pollList" component={PollList} />
     <Route exact path="/login" component={Login} />
     <Route exact path="/detail" component={Detail} />
+    <Route exact path="/signup" component={SignUp} />
   </Router>
 );
 
