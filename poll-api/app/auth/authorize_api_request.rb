@@ -1,5 +1,5 @@
 class AuthorizeApiRequest
-
+require 'Message'
   def initialize(headers = {})
     @headers = headers
   end
