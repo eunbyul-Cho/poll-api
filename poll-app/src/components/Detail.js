@@ -9,7 +9,7 @@ const Detail = props => {
       <div>
         <div>
           {candidates.map(candidate => (
-            <div>
+            <div key={candidate.name}>
               <div>{candidate.name}</div>
               <div>{candidate.count}</div>
             </div>
