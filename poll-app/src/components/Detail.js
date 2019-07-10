@@ -1,5 +1,5 @@
 import React from "react";
-
+import Chart from "./Chart";
 const Detail = props => {
   const { pollData } = props.location.state;
   const candidates = pollData.candidates;
@@ -15,6 +15,7 @@ const Detail = props => {
             </div>
           ))}
         </div>
+        <Chart candidates={candidates} />
         <div />
       </div>
     </div>
