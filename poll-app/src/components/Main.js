@@ -35,6 +35,9 @@ const Nav = () => {
         <NavLink to="/login">Login</NavLink>
       </li>
       <li>
+        <NavLink to="/signup">SignUp</NavLink>
+      </li>
+      <li>
         <NavLink to="/createPoll">CreatePoll</NavLink>
       </li>
     </ul>
