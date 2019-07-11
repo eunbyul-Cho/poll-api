@@ -1,5 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
+import PollItem from "./PollItem";
 
 class MyPoll extends Component {
   constructor(props) {
@@ -8,21 +9,50 @@ class MyPoll extends Component {
       polls: []
     };
   }
-  getUser = e => {
+  deletePoll = pollId => {
+    console.log(pollId);
+
     let token = "Bearer " + localStorage.getItem("jwt");
     axios
-      .get("/currentuser", { headers: { Authorization: token } })
+      .delete(`api/polls/${pollId}`, { headers: { Authorization: token } })
       .then(response => {
         console.log(response);
-        localStorage.setItem("currentUser", response.data.id);
+      })
+      .catch(error => console.log(error));
+  };
+  getMyPoll = e => {
+    let token = "Bearer " + localStorage.getItem("jwt");
+    axios
+      .get("/api/mypoll", { headers: { Authorization: token } })
+      .then(response => {
+        console.log(response);
+        this.setState({ polls: response.data });
       })
       .catch(error => console.log(error));
   };
   componentDidMount() {
-    this.getUser();
+    this.getMyPoll();
   }
+
   render() {
-    return <div>mypoll</div>;
+    return (
+      <Fragment>
+        <h1>Poll List</h1>
+
+        <div className="listWrapper">
+          {this.state.polls.map(poll => (
+            <Fragment>
+              <PollItem
+                poll={poll}
+                handleItemClick={this.handleItemClick}
+                key={poll.name}
+              />
+              <button onClick={() => this.deletePoll(poll.id)}>delete</button>
+            </Fragment>
+          ))}
+        </div>
+      </Fragment>
+    );
   }
 }
 
