@@ -14,6 +14,7 @@ class Poll extends Component {
     axios
       .get("api/polls", { headers: { Authorization: token } })
       .then(response => {
+        console.log(response);
         this.setState({ polls: response.data });
       })
       .catch(error => console.log(error));

@@ -13,6 +13,7 @@ import PollList from "./PollList.js";
 import Detail from "./Detail.js";
 import SignUp from "./SignUp";
 import CreatePoll from "./CreatePoll";
+import MyPoll from "./MyPoll";
 
 const Nav = () => {
   const logout = () => {
@@ -33,6 +34,9 @@ const Nav = () => {
       <li>
         <NavLink to="/createPoll">CreatePoll</NavLink>
       </li>
+      <li>
+        <NavLink to="/myPoll">MyPoll</NavLink>
+      </li>
       <button onClick={logout}>logout</button>
     </ul>
   );
@@ -44,6 +48,7 @@ const AppRouter = () => (
     <Route path="/detail" component={Detail} />
     <Route path="/signup" component={SignUp} />
     <Route path="/createPoll" component={CreatePoll} />
+    <Route path="/myPoll" component={MyPoll} />
   </Switch>
 );
 
