@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import { Route, Redirect } from "react-router";
 class Login extends Component {
@@ -37,7 +37,7 @@ class Login extends Component {
 
   render() {
     return (
-      <Fragment>
+      <>
         <div className="inputContainer">
           <input
             type="text"
@@ -55,7 +55,7 @@ class Login extends Component {
           />
           <button onClick={this.login}>submit</button>
         </div>
-      </Fragment>
+      </>
     );
   }
 }

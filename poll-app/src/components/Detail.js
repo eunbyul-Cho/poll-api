@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import Chart from "./Chart";
 import axios from "axios";
 
@@ -56,7 +56,7 @@ class Detail extends Component {
       return <div>loading</div>;
     }
     return (
-      <Fragment>
+      <>
         <div className="detail-header">{pollData.name}</div>
         <div className="candidates-container">
           <div>
@@ -75,7 +75,7 @@ class Detail extends Component {
           <Chart candidates={candidates} />
           <div />
         </div>
-      </Fragment>
+      </>
     );
   }
 }

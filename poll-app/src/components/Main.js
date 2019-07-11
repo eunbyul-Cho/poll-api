@@ -7,7 +7,7 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-
+import Home from "./Home.js";
 import Login from "./Login.js";
 import PollList from "./PollList.js";
 import Detail from "./Detail.js";
@@ -15,18 +15,18 @@ import SignUp from "./SignUp";
 import CreatePoll from "./CreatePoll";
 import MyPoll from "./MyPoll";
 
-const Nav = () => {
+const Nav = props => {
   const logout = () => {
     localStorage.removeItem("jwt");
   };
-
+  const auth = props.isLoggedIn ? "logout" : "login";
   return (
     <ul>
       <li>
         <NavLink to="pollList">Polls</NavLink>
       </li>
       <li>
-        <NavLink to="/login">Login</NavLink>
+        <NavLink to={`/${auth}`}>{auth}</NavLink>
       </li>
       <li>
         <NavLink to="/signup">SignUp</NavLink>
@@ -43,6 +43,7 @@ const Nav = () => {
 };
 const AppRouter = () => (
   <Switch>
+    <Route exact path="/" component={Home} />
     <Route path="/pollList" component={PollList} />
     <Route path="/login" component={Login} />
     <Route path="/detail" component={Detail} />
@@ -59,9 +60,11 @@ class Main extends Component {
   }
 
   render() {
+    let isLoggedIn = localStorage.getItem("jwt") ? true : false;
+    console.log(localStorage.getItem("jwt"), isLoggedIn);
     return (
       <Router>
-        <Nav />
+        <Nav isLoggedIn={isLoggedIn} />
         <div className="container">
           <AppRouter />
         </div>

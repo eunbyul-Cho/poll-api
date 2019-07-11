@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import PollItem from "./PollItem";
 class Poll extends Component {
@@ -14,7 +14,6 @@ class Poll extends Component {
     axios
       .get("api/polls", { headers: { Authorization: token } })
       .then(response => {
-        console.log(response);
         this.setState({ polls: response.data });
       })
       .catch(error => console.log(error));
@@ -28,7 +27,7 @@ class Poll extends Component {
   }
   render() {
     return (
-      <Fragment>
+      <>
         <h1>Poll List</h1>
 
         <div className="listWrapper">
@@ -40,7 +39,7 @@ class Poll extends Component {
             />
           ))}
         </div>
-      </Fragment>
+      </>
     );
   }
 }
