@@ -23,6 +23,7 @@ class Login extends Component {
         this.setState({
           inputValue: ""
         });
+        this.props.history.push("/pollList");
       })
       .catch(error => console.log(error));
   };

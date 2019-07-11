@@ -29,6 +29,7 @@ class Poll extends Component {
     return (
       <Fragment>
         <h1>Poll List</h1>
+
         <div className="listWrapper">
           {this.state.polls.map(poll => (
             <PollItem

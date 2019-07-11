@@ -4,7 +4,8 @@ import {
   BrowserRouter as Router,
   Route,
   NavLink,
-  Switch
+  Switch,
+  Redirect
 } from "react-router-dom";
 
 import Login from "./Login.js";
@@ -13,19 +14,11 @@ import Detail from "./Detail.js";
 import SignUp from "./SignUp";
 import CreatePoll from "./CreatePoll";
 
-class Main extends Component {
-  render() {
-    return (
-      <Router>
-        <Nav />
-        <div className="container">
-          <AppRouter />
-        </div>
-      </Router>
-    );
-  }
-}
 const Nav = () => {
+  const logout = () => {
+    localStorage.removeItem("jwt");
+  };
+
   return (
     <ul>
       <li>
@@ -40,6 +33,7 @@ const Nav = () => {
       <li>
         <NavLink to="/createPoll">CreatePoll</NavLink>
       </li>
+      <button onClick={logout}>logout</button>
     </ul>
   );
 };
@@ -52,5 +46,23 @@ const AppRouter = () => (
     <Route path="/createPoll" component={CreatePoll} />
   </Switch>
 );
+
+class Main extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  render() {
+    return (
+      <Router>
+        <Nav />
+        <div className="container">
+          <AppRouter />
+        </div>
+      </Router>
+    );
+  }
+}
 
 export default Main;
