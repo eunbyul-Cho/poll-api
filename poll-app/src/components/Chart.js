@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Doughnut } from "react-chartjs-2";
 const Chart = props => {
   let data = {
@@ -21,10 +21,10 @@ const Chart = props => {
     ]
   };
   return (
-    <div>
+    <Fragment>
       <div>Chart</div>
       <Doughnut data={data} />
-    </div>
+    </Fragment>
   );
 };
 

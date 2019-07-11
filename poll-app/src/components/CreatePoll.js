@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
 
 class CreatePoll extends Component {
@@ -47,7 +47,7 @@ class CreatePoll extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <div className="inputContainer">
           <input
             type="text"
@@ -76,7 +76,7 @@ class CreatePoll extends Component {
           />
           <button onClick={this.createPoll}>submit</button>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

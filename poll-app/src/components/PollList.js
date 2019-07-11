@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "axios";
 import PollItem from "./PollItem";
 class Poll extends Component {
@@ -27,7 +27,7 @@ class Poll extends Component {
   }
   render() {
     return (
-      <div>
+      <Fragment>
         <h1>Poll List</h1>
         <div className="listWrapper">
           {this.state.polls.map(poll => (
@@ -38,7 +38,7 @@ class Poll extends Component {
             />
           ))}
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
