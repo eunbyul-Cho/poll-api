@@ -6,8 +6,21 @@ class Detail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      candidates: this.props.location.state.pollData.candidates
+      isLoading: true,
+      data: {},
+      candidates: this.state.data.candidates
     };
+  }
+  getPollData() {
+    let token = "Bearer " + localStorage.getItem("jwt");
+    const { poll } = this.props;
+    let targetId = poll.id;
+    axios
+      .get(`api/polls/${targetId}`, { headers: { Authorization: token } })
+      .then(response => {
+        this.setState({ data: response.data });
+      })
+      .catch(error => console.log(error));
   }
   vote = candidateId => {
     let token = "Bearer " + localStorage.getItem("jwt");
@@ -26,6 +39,9 @@ class Detail extends Component {
       })
       .catch(error => console.log(error));
   };
+  componentDidMount() {
+    this.getPollData();
+  }
   render() {
     const { pollData } = this.props.location.state;
     return (

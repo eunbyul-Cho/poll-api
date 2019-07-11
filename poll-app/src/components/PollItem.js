@@ -9,24 +9,11 @@ class PollItem extends Component {
       data: {}
     };
   }
-  getPollData() {
-    let token = "Bearer " + localStorage.getItem("jwt");
-    const { poll } = this.props;
-    let targetId = poll.id;
-    axios
-      .get(`api/polls/${targetId}`, { headers: { Authorization: token } })
-      .then(response => {
-        this.setState({ data: response.data });
-      })
-      .catch(error => console.log(error));
-  }
-  componentDidMount() {
-    this.getPollData();
-  }
+
   render() {
     const data = this.state.data;
     return (
-      <Link to={{ pathname: "/detail", state: { pollData: data } }}>
+      <Link to={{ pathname: "/detail" }}>
         <div>
           <div>{this.props.poll.name}</div>
         </div>
