@@ -7,21 +7,26 @@ class Detail extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      data: {},
-      candidates: this.state.data.candidates
+      candidates: {}
     };
   }
-  getPollData() {
+  getCandidate() {
+    // props 정보는 id, name만 포함하므로 poll id를 가지고 candidate정보를 불러옴
+    let { pollData } = this.props.location.state;
+    let targetId = pollData.id;
     let token = "Bearer " + localStorage.getItem("jwt");
-    const { poll } = this.props;
-    let targetId = poll.id;
+
     axios
       .get(`api/polls/${targetId}`, { headers: { Authorization: token } })
       .then(response => {
-        this.setState({ data: response.data });
+        this.setState({
+          candidates: response.data.candidates,
+          isLoading: false
+        });
       })
       .catch(error => console.log(error));
   }
+
   vote = candidateId => {
     let token = "Bearer " + localStorage.getItem("jwt");
     axios
@@ -34,22 +39,28 @@ class Detail extends Component {
         }
       )
       .then(response => {
-        console.log(response.data);
         this.setState({ candidates: response.data });
       })
       .catch(error => console.log(error));
   };
+
   componentDidMount() {
-    this.getPollData();
+    this.getCandidate();
   }
+
   render() {
     const { pollData } = this.props.location.state;
+    const candidates = this.state.candidates;
+
+    if (this.state.isLoading) {
+      return <div>loading</div>;
+    }
     return (
       <div>
         <div className="detail-header">{pollData.name}</div>
         <div className="candidates-container">
           <div>
-            {this.state.candidates.map(candidate => (
+            {candidates.map(candidate => (
               <div key={candidate.name} className="candidate-container">
                 <div>{`${candidate.name}:${candidate.count}`}</div>
                 <button
@@ -61,7 +72,7 @@ class Detail extends Component {
               </div>
             ))}
           </div>
-          <Chart candidates={this.state.candidates} />
+          <Chart candidates={candidates} />
           <div />
         </div>
       </div>
