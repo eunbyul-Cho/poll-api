@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import Home from "./Home.js";
 import Login from "./Login.js";
-import PollList from "./PollList.js";
+import PollListContainer from "./PollListContainer.js";
 import Detail from "./Detail.js";
 import SignUp from "./SignUp";
 import CreatePoll from "./CreatePoll";
@@ -19,6 +19,7 @@ const Nav = props => {
   const logout = () => {
     localStorage.removeItem("jwt");
   };
+  //TODO
   const auth = props.isLoggedIn ? "logout" : "login";
   return (
     <ul>
@@ -44,7 +45,7 @@ const Nav = props => {
 const AppRouter = () => (
   <Switch>
     <Route exact path="/" component={Home} />
-    <Route path="/pollList" component={PollList} />
+    <Route path="/pollList" component={PollListContainer} />
     <Route path="/login" component={Login} />
     <Route path="/detail" component={Detail} />
     <Route path="/signup" component={SignUp} />
