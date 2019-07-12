@@ -8,7 +8,7 @@ import {
   Redirect
 } from "react-router-dom";
 import Home from "./Home.js";
-import Login from "./Login.js";
+import LoginContainer from "./LoginContainer.js";
 import PollListContainer from "./PollListContainer.js";
 import DetailContainer from "./DetailContainer.js";
 import SignUpContainer from "./SignUpContainer";
@@ -46,7 +46,7 @@ const AppRouter = () => (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route path="/pollList" component={PollListContainer} />
-    <Route path="/login" component={Login} />
+    <Route path="/login" component={LoginContainer} />
     <Route path="/detail" component={DetailContainer} />
     <Route path="/signup" component={SignUpContainer} />
     <Route path="/createPoll" component={CreatePoll} />
