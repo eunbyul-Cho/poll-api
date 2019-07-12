@@ -61,7 +61,7 @@ class Main extends Component {
 
   render() {
     let isLoggedIn = localStorage.getItem("jwt") ? true : false;
-    console.log(localStorage.getItem("jwt"), isLoggedIn);
+
     return (
       <Router>
         <Nav isLoggedIn={isLoggedIn} />
