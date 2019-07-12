@@ -39,7 +39,9 @@ class DetailContainer extends Component {
     if (this.state.isLoading) {
       return <div>loading</div>;
     }
-    return <Detail pollData={pollData} candidates={candidates} />;
+    return (
+      <Detail pollData={pollData} candidates={candidates} vote={this.vote} />
+    );
   }
 }
 

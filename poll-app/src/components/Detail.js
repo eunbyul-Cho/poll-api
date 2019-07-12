@@ -11,7 +11,7 @@ const Detail = props => (
             <div>{`${candidate.name}:${candidate.count}`}</div>
             <button
               className="vote-btn"
-              onClick={() => this.vote(candidate.id)}
+              onClick={() => props.vote(candidate.id)}
             >
               투표하기
             </button>
