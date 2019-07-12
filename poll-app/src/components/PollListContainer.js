@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import PollList from "./PollList";
-import api from "../lib/api.js";
+
+import { connect } from "react-redux";
+import { itemsFetchData } from "../actions/index";
 
 class PollListContainer extends Component {
   constructor(props) {
@@ -15,14 +17,26 @@ class PollListContainer extends Component {
     this.setState({ inputValue: e.target.value });
   };
   componentDidMount() {
-    api
-      .getPolls()
-      .then(data => this.setState({ polls: data }))
-      .catch(error => console.log(error));
+    this.props.fetchData();
   }
   render() {
     return <PollList polls={this.state.polls} />;
   }
 }
+const mapStateToProps = state => {
+  return {
+    items: state.items,
+    hasErrored: state.itemsHasErrored,
+    isLoading: state.itemsIsLoading
+  };
+};
 
-export default PollListContainer;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchData: () => dispatch(itemsFetchData())
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PollListContainer);

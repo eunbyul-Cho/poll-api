@@ -12,28 +12,30 @@ export function itemsIsLoading(bool) {
     isLoading: bool
   };
 }
-export function itemsFetchDataSuccess(items) {
+export function itemsFetchDataSuccess(polls) {
   return {
     type: "ITEMS_FETCH_DATA_SUCCESS",
-    items
+    polls
   };
 }
-export function itemsFetchData(url) {
+export function itemsFetchData() {
   return dispatch => {
     dispatch(itemsIsLoading(true));
 
-    fetch(url)
+    api
+      .getPolls()
       .then(response => {
-        if (!response.ok) {
+        if (response.statusText !== "OK") {
+          console.log("errr");
           throw Error(response.statusText);
         }
 
         dispatch(itemsIsLoading(false));
-
+        console.log(response);
         return response;
       })
-      .then(response => response.json())
-      .then(items => dispatch(itemsFetchDataSuccess(items)))
+      .then(response => response.data)
+      .then(polls => dispatch(itemsFetchDataSuccess(polls)))
       .catch(() => dispatch(itemsHasErrored(true)));
   };
 }

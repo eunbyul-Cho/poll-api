@@ -14,10 +14,10 @@ export function itemsIsLoading(state = false, action) {
       return state;
   }
 }
-export function items(state = [], action) {
+export function polls(state = [], action) {
   switch (action.type) {
     case "ITEMS_FETCH_DATA_SUCCESS":
-      return action.items;
+      return action.polls;
     default:
       return state;
   }
