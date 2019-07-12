@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import api from "../lib/api.js";
+import React from "react";
+
 const CreatePoll = props => (
   <>
     <div className="inputContainer">

@@ -1,8 +1,4 @@
-import React, { Component } from "react";
-
-import api from "../lib/api.js";
-
-import { Route, Redirect } from "react-router";
+import React from "react";
 
 const Login = props => (
   <>

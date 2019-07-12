@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import SignUp from "./SignUp";
 import api from "../lib/api.js";
-import { Route, Redirect } from "react-router";
 
 class SignUpContainer extends Component {
   constructor(props) {

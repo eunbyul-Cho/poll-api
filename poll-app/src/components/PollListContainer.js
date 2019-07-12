@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-
 import PollList from "./PollList";
-
 import api from "../lib/api.js";
 
 class PollListContainer extends Component {

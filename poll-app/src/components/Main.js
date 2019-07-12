@@ -4,8 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   NavLink,
-  Switch,
-  Redirect
+  Switch
 } from "react-router-dom";
 import Home from "./Home.js";
 import LoginContainer from "./LoginContainer.js";

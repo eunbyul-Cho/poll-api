@@ -1,7 +1,4 @@
-import React, { Component } from "react";
-import axios from "axios";
-import api from "../lib/api.js";
-
+import React from "react";
 import PollItem from "./PollItem";
 
 const MyPoll = props => (

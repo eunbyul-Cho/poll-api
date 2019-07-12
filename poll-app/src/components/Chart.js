@@ -1,5 +1,6 @@
 import React from "react";
 import { Doughnut } from "react-chartjs-2";
+
 const Chart = props => {
   let data = {
     labels: props.candidates.map(e => e.name),

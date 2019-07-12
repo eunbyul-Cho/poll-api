@@ -1,5 +1,4 @@
 import React from "react";
-
 import PollItem from "./PollItem";
 
 const PollList = props => (
