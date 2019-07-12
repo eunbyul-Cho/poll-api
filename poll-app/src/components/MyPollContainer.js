@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import api from "../lib/api.js";
 import MyPoll from "./MyPoll";
-
+import { connect } from "react-redux";
+import { myPollsFetchData } from "../actions/index";
 class MyPollContainer extends Component {
   state = {
     polls: []
@@ -27,12 +28,27 @@ class MyPollContainer extends Component {
       .catch(error => console.log(error));
   };
   componentDidMount() {
-    this.getMyPoll();
+    this.props.fetchData();
   }
 
   render() {
-    return <MyPoll polls={this.state.polls} deletePoll={this.deletePoll} />;
+    return <MyPoll polls={this.props.polls} deletePoll={this.deletePoll} />;
   }
 }
+const mapStateToProps = state => {
+  return {
+    polls: state.polls,
+    hasErrored: state.itemsHasErrored,
+    isLoading: state.itemsIsLoading
+  };
+};
 
-export default MyPollContainer;
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchData: () => dispatch(myPollsFetchData())
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyPollContainer);

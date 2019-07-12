@@ -18,7 +18,7 @@ export function itemsFetchDataSuccess(polls) {
     polls
   };
 }
-export function itemsFetchData() {
+export function pollsFetchData() {
   return dispatch => {
     dispatch(itemsIsLoading(true));
 
@@ -26,12 +26,29 @@ export function itemsFetchData() {
       .getPolls()
       .then(response => {
         if (response.statusText !== "OK") {
-          console.log("errr");
           throw Error(response.statusText);
         }
 
         dispatch(itemsIsLoading(false));
-        console.log(response);
+        return response;
+      })
+      .then(response => response.data)
+      .then(polls => dispatch(itemsFetchDataSuccess(polls)))
+      .catch(() => dispatch(itemsHasErrored(true)));
+  };
+}
+export function myPollsFetchData() {
+  return dispatch => {
+    dispatch(itemsIsLoading(true));
+
+    api
+      .getMyPoll()
+      .then(response => {
+        if (response.statusText !== "OK") {
+          throw Error(response.statusText);
+        }
+
+        dispatch(itemsIsLoading(false));
         return response;
       })
       .then(response => response.data)

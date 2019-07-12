@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PollList from "./PollList";
 
 import { connect } from "react-redux";
-import { itemsFetchData } from "../actions/index";
+import { pollsFetchData } from "../actions/index";
 
 class PollListContainer extends Component {
   constructor(props) {
@@ -33,7 +33,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: () => dispatch(itemsFetchData())
+    fetchData: () => dispatch(pollsFetchData())
   };
 };
 export default connect(
