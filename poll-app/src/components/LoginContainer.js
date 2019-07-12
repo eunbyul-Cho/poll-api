@@ -29,13 +29,6 @@ class LoginContainer extends Component {
       .catch(error => console.log(error));
   };
 
-  handleEmailChange = e => {
-    this.setState({ email: e.target.value });
-  };
-  handlePasswordChange = e => {
-    this.setState({ password: e.target.value });
-  };
-
   handleInputChange = event => {
     const target = event.target;
     const name = target.name;
