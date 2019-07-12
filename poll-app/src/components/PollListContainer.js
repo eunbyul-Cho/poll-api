@@ -20,12 +20,12 @@ class PollListContainer extends Component {
     this.props.fetchData();
   }
   render() {
-    return <PollList polls={this.state.polls} />;
+    return <PollList polls={this.props.polls} />;
   }
 }
 const mapStateToProps = state => {
   return {
-    items: state.items,
+    polls: state.polls,
     hasErrored: state.itemsHasErrored,
     isLoading: state.itemsIsLoading
   };
