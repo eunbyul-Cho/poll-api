@@ -12,8 +12,8 @@ import LoginContainer from "./LoginContainer.js";
 import PollListContainer from "./PollListContainer.js";
 import DetailContainer from "./DetailContainer.js";
 import SignUpContainer from "./SignUpContainer";
-import CreatePoll from "./CreatePoll";
-import MyPoll from "./MyPoll";
+import CreatePollContainer from "./CreatePollContainer";
+import MyPollContainer from "./MyPollContainer";
 
 const Nav = props => {
   const logout = () => {
@@ -49,8 +49,8 @@ const AppRouter = () => (
     <Route path="/login" component={LoginContainer} />
     <Route path="/detail" component={DetailContainer} />
     <Route path="/signup" component={SignUpContainer} />
-    <Route path="/createPoll" component={CreatePoll} />
-    <Route path="/myPoll" component={MyPoll} />
+    <Route path="/createPoll" component={CreatePollContainer} />
+    <Route path="/myPoll" component={MyPollContainer} />
   </Switch>
 );
 
