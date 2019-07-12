@@ -6,16 +6,16 @@ const Login = props => (
       <input
         type="text"
         placeholder="email"
+        name="email"
         maxLength="50"
-        value={props.email}
-        onChange={props.handleEmailChange}
+        onChange={props.handleInputChange}
       />
       <input
         type="text"
         placeholder="password"
+        name="password"
         maxLength="50"
-        value={props.password}
-        onChange={props.handlePasswordChange}
+        onChange={props.handleInputChange}
       />
       <button onClick={props.login}>submit</button>
     </div>

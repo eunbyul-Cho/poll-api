@@ -30,29 +30,17 @@ class SignUpContainer extends Component {
       .catch(error => console.log(error));
   };
 
-  handleNameChange = e => {
-    this.setState({ name: e.target.value });
+  handleInputChange = event => {
+    const target = event.target;
+    const name = target.name;
+
+    this.setState({
+      [name]: target.value
+    });
   };
-  handleEmailChange = e => {
-    this.setState({ email: e.target.value });
-  };
-  handlePasswordChange = e => {
-    this.setState({ password: e.target.value });
-  };
-  handlePasswordConfirmationChange = e => {
-    this.setState({ passwordConfirmation: e.target.value });
-  };
+
   render() {
-    return (
-      <SignUp
-        values={this.state}
-        handleNameChange={this.handleNameChange}
-        handleEmailChange={this.handleEmailChange}
-        handlePasswordChange={this.handlePasswordChange}
-        handlePasswordConfirmationChange={this.handlePasswordConfirmationChange}
-        signup={this.signup}
-      />
-    );
+    return <SignUp signup={this.signup} />;
   }
 }
 

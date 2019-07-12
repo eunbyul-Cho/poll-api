@@ -36,9 +36,18 @@ class LoginContainer extends Component {
     this.setState({ password: e.target.value });
   };
 
+  handleInputChange = event => {
+    const target = event.target;
+    const name = target.name;
+
+    this.setState({
+      [name]: target.value
+    });
+  };
   render() {
     return (
       <Login
+        handleInputChange={this.handleInputChange}
         email={this.state.email}
         password={this.state.password}
         handleEmailChange={this.handleEmailChange}

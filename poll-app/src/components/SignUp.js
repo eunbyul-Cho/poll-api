@@ -5,31 +5,31 @@ const SignUp = props => (
     <div className="inputContainer">
       <input
         type="text"
+        name="name"
         placeholder="name"
         maxLength="50"
-        value={props.values.name}
-        onChange={props.handleNameChange}
+        onChange={props.handleInputChange}
       />
       <input
         type="text"
+        name="email"
         placeholder="email"
         maxLength="50"
-        value={props.values.email}
-        onChange={props.handleEmailChange}
+        onChange={props.handleInputChange}
       />
       <input
         type="text"
+        name="password"
         placeholder="password"
         maxLength="50"
-        value={props.values.password}
-        onChange={props.handlePasswordChange}
+        onChange={props.handleInputChange}
       />
       <input
         type="text"
+        name="passwordConfirmation"
         placeholder="passwordConfirmation"
         maxLength="50"
-        value={props.values.passwordConfirmation}
-        onChange={props.handlePasswordConfirmationChange}
+        onChange={props.handleInputChange}
       />
       <button onClick={props.signup}>submit</button>
     </div>
