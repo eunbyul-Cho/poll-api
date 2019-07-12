@@ -11,7 +11,7 @@ import Home from "./Home.js";
 import Login from "./Login.js";
 import PollListContainer from "./PollListContainer.js";
 import DetailContainer from "./DetailContainer.js";
-import SignUp from "./SignUp";
+import SignUpContainer from "./SignUpContainer";
 import CreatePoll from "./CreatePoll";
 import MyPoll from "./MyPoll";
 
@@ -48,7 +48,7 @@ const AppRouter = () => (
     <Route path="/pollList" component={PollListContainer} />
     <Route path="/login" component={Login} />
     <Route path="/detail" component={DetailContainer} />
-    <Route path="/signup" component={SignUp} />
+    <Route path="/signup" component={SignUpContainer} />
     <Route path="/createPoll" component={CreatePoll} />
     <Route path="/myPoll" component={MyPoll} />
   </Switch>
