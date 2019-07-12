@@ -1,55 +1,38 @@
 import React, { Component } from "react";
 import Chart from "./Chart";
-import axios from "axios";
 
+import api from "../lib/api.js";
 class Detail extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLoading: true,
-      candidates: {}
+      candidates: []
     };
-  }
-  getCandidate() {
-    // props 정보는 id, name만 포함하므로 poll id를 가지고 candidate정보를 불러옴
-    let { pollData } = this.props.location.state;
-    let targetId = pollData.id;
-    let token = "Bearer " + localStorage.getItem("jwt");
-
-    axios
-      .get(`api/polls/${targetId}`, { headers: { Authorization: token } })
-      .then(response => {
-        this.setState({
-          candidates: response.data.candidates,
-          isLoading: false
-        });
-      })
-      .catch(error => console.log(error));
   }
 
   vote = candidateId => {
-    let token = "Bearer " + localStorage.getItem("jwt");
-    axios
-      .put(
-        `api/candidates/${candidateId}`,
-
-        { id: candidateId },
-        {
-          headers: { Authorization: token }
-        }
-      )
-      .then(response => {
-        this.setState({ candidates: response.data });
-      })
-      .catch(error => console.log(error));
+    api.vote(candidateId).then(data => this.setState({ candidates: data }));
   };
 
   componentDidMount() {
-    this.getCandidate();
+    let { pollData } = this.props.location.state;
+    let targetId = pollData.id;
+
+    api
+      .getCandidates(targetId)
+      .then(data =>
+        this.setState({
+          candidates: data.candidates,
+          isLoading: false
+        })
+      )
+      .catch(error => console.log(error));
   }
 
   render() {
     const { pollData } = this.props.location.state;
+
     const candidates = this.state.candidates;
 
     if (this.state.isLoading) {

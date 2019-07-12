@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
+
+import api from "../lib/api.js";
+
 import { Route, Redirect } from "react-router";
 class Login extends Component {
   constructor(props) {
@@ -10,24 +12,24 @@ class Login extends Component {
     };
   }
 
-  login = e => {
+  login = () => {
     const request = {
       email: this.state.email,
       password: this.state.password
     };
-    axios
-      .post("/auth/login", request)
-      .then(response => {
-        console.log(response);
-        localStorage.setItem("jwt", response.data.auth_token);
+    api
+      .login(request)
+      .then(data => {
+        console.log(data);
+        localStorage.setItem("jwt", data.auth_token);
 
         this.setState({
           inputValue: ""
         });
-        this.props.history.push("/pollList");
       })
       .catch(error => console.log(error));
   };
+
   handleEmailChange = e => {
     this.setState({ email: e.target.value });
   };

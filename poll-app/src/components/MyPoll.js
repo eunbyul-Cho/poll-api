@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+import api from "../lib/api.js";
+
 import PollItem from "./PollItem";
 
 class MyPoll extends Component {
@@ -8,9 +9,8 @@ class MyPoll extends Component {
   };
 
   deletePoll = pollId => {
-    let token = "Bearer " + localStorage.getItem("jwt");
-    axios
-      .delete(`api/polls/${pollId}`, { headers: { Authorization: token } })
+    api
+      .deletePoll(pollId)
       .then(response => {
         const updatedPolls = this.state.polls.filter(
           poll => poll.id !== pollId
@@ -20,9 +20,8 @@ class MyPoll extends Component {
       .catch(error => console.log(error));
   };
   getMyPoll = e => {
-    let token = "Bearer " + localStorage.getItem("jwt");
-    axios
-      .get("/api/mypoll", { headers: { Authorization: token } })
+    api
+      .getMyPoll()
       .then(response => {
         this.setState({ polls: response.data });
       })

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import axios from "axios";
+import api from "../lib/api.js";
 
 class CreatePoll extends Component {
   constructor(props) {
@@ -11,24 +11,20 @@ class CreatePoll extends Component {
   }
 
   createPoll = e => {
-    let token = "Bearer " + localStorage.getItem("jwt");
     const request = {
       poll: {
         name: this.state.name,
         candidates_attributes: this.state.candidates
       }
     };
-    console.log(request);
-
-    axios
-      .post("/api/polls", request, { headers: { Authorization: token } })
-      .then(response => {
-        console.log(response);
+    api
+      .createPoll(request)
+      .then(data =>
         this.setState({
           name: "",
           candidates: []
-        });
-      })
+        })
+      )
       .catch(error => console.log(error));
   };
   handleNameChange = e => {

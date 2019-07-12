@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+
+import api from "../lib/api.js";
 import { Route, Redirect } from "react-router";
 
 class SignUp extends Component {
@@ -13,22 +14,23 @@ class SignUp extends Component {
     };
   }
 
-  signup = e => {
+  signup = () => {
     const request = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password
     };
-    axios
-      .post("/signup", request)
-      .then(response => {
-        localStorage.setItem("jwt", response.data.auth_token);
+    api
+      .signup(request)
+      .then(data => {
+        localStorage.setItem("jwt", data.auth_token);
         this.setState({
           inputValue: ""
         });
       })
       .catch(error => console.log(error));
   };
+
   handleNameChange = e => {
     this.setState({ name: e.target.value });
   };
