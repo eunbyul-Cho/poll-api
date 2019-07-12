@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 import api from "../lib/api.js";
 
 import PollItem from "./PollItem";
