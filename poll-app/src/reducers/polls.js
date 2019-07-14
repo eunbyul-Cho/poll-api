@@ -22,3 +22,11 @@ export function polls(state = [], action) {
       return state;
   }
 }
+export function candidates(state = [], action) {
+  switch (action.type) {
+    case "CANDIDATES_FETCH_DATA_SUCCESS":
+      return action.candidates;
+    default:
+      return state;
+  }
+}

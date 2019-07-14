@@ -17,7 +17,7 @@ export default {
     // // props 정보는 id, name만 포함하므로 poll id를 가지고 candidate정보를 불러옴
     axios
       .get(`api/polls/${targetId}`, { headers: { Authorization: token } })
-      .then(response => response.data)
+      .then(response => response)
       .catch(error => {
         throw error;
       }),

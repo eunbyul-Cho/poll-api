@@ -18,6 +18,14 @@ export function itemsFetchDataSuccess(polls) {
     polls
   };
 }
+//TODO 하나씩 set 해야 하나???
+
+export function candidatesFetchDataSuccess(candidates) {
+  return {
+    type: "CANDIDATES_FETCH_DATA_SUCCESS",
+    candidates
+  };
+}
 export function pollsFetchData() {
   return dispatch => {
     dispatch(itemsIsLoading(true));
@@ -54,5 +62,31 @@ export function myPollsFetchData() {
       .then(response => response.data)
       .then(polls => dispatch(itemsFetchDataSuccess(polls)))
       .catch(() => dispatch(itemsHasErrored(true)));
+  };
+}
+
+export function candidatesFetchData(targetId) {
+  return dispatch => {
+    dispatch(itemsIsLoading(true));
+
+    api
+      .getCandidates(targetId)
+      .then(response => {
+        if (response.statusText !== "OK") {
+          throw Error(response.statusText);
+        }
+
+        dispatch(itemsIsLoading(false));
+        return response;
+      })
+      .then(response => {
+        console.log(response.data);
+        return response.data.candidates;
+      })
+      .then(candidates => dispatch(candidatesFetchDataSuccess(candidates)))
+      .catch(
+        err => console.log(err)
+        // () => dispatch(itemsHasErrored(true))
+      );
   };
 }

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import Detail from "./Detail";
 import api from "../lib/api.js";
+import { connect } from "react-redux";
+import { candidatesFetchData } from "../actions/index";
 
 class DetailContainer extends Component {
   constructor(props) {
@@ -19,30 +21,33 @@ class DetailContainer extends Component {
   componentDidMount() {
     let { pollData } = this.props.location.state;
     let targetId = pollData.id;
-
-    api
-      .getCandidates(targetId)
-      .then(data =>
-        this.setState({
-          candidates: data.candidates,
-          isLoading: false
-        })
-      )
-      .catch(error => console.log(error));
+    this.props.fetchData(targetId);
   }
 
   render() {
     const { pollData } = this.props.location.state;
 
-    const candidates = this.state.candidates;
+    const candidates = this.props.candidates;
 
-    if (this.state.isLoading) {
-      return <div>loading</div>;
-    }
     return (
       <Detail pollData={pollData} candidates={candidates} vote={this.vote} />
     );
   }
 }
 
-export default DetailContainer;
+const mapStateToProps = state => {
+  return {
+    candidates: state.candidates,
+    hasErrored: state.itemsHasErrored,
+    isLoading: state.itemsIsLoading
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchData: targetId => dispatch(candidatesFetchData(targetId))
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DetailContainer);
