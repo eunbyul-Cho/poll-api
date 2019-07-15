@@ -5,13 +5,6 @@ import { connect } from "react-redux";
 import { pollsFetchData } from "../actions/index";
 
 class PollListContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      polls: []
-    };
-  }
-
   componentDidMount() {
     this.props.fetchData();
   }

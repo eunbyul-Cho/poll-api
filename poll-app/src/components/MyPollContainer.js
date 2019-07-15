@@ -1,25 +1,10 @@
 import React, { Component } from "react";
-import api from "../lib/api.js";
+
 import MyPoll from "./MyPoll";
 import { connect } from "react-redux";
 import { myPollsFetchData, deletePollData } from "../actions/index";
+
 class MyPollContainer extends Component {
-  state = {
-    polls: []
-  };
-
-  deletePoll = pollId => {
-    api
-      .deletePoll(pollId)
-      .then(response => {
-        const updatedPolls = this.state.polls.filter(
-          poll => poll.id !== pollId
-        );
-        this.setState({ polls: updatedPolls });
-      })
-      .catch(error => console.log(error));
-  };
-
   componentDidMount() {
     this.props.fetchData();
   }
