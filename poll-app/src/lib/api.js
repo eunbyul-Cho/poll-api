@@ -38,7 +38,9 @@ export default {
   createPoll: request =>
     axios
       .post("/api/polls", request, { headers: { Authorization: token } })
-      .then(response => response)
+      .then(response => {
+        return response;
+      })
       .catch(error => {
         throw error;
       }),

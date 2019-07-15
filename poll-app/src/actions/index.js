@@ -12,10 +12,17 @@ export function itemsIsLoading(bool) {
     isLoading: bool
   };
 }
-export function itemsFetchDataSuccess(polls) {
+
+export function pollsFetchDataSuccess(polls) {
   return {
-    type: "ITEMS_FETCH_DATA_SUCCESS",
+    type: "POLLS_FETCH_DATA_SUCCESS",
     polls
+  };
+}
+export function addPoll(poll) {
+  return {
+    type: "CREATE_POLL",
+    poll
   };
 }
 //TODO 하나씩 set 해야 하나???
@@ -41,7 +48,7 @@ export function pollsFetchData() {
         return response;
       })
       .then(response => response.data)
-      .then(polls => dispatch(itemsFetchDataSuccess(polls)))
+      .then(polls => dispatch(pollsFetchDataSuccess(polls)))
       .catch(() => dispatch(itemsHasErrored(true)));
   };
 }
@@ -60,7 +67,7 @@ export function myPollsFetchData() {
         return response;
       })
       .then(response => response.data)
-      .then(polls => dispatch(itemsFetchDataSuccess(polls)))
+      .then(polls => dispatch(pollsFetchDataSuccess(polls)))
       .catch(() => dispatch(itemsHasErrored(true)));
   };
 }
@@ -80,7 +87,6 @@ export function candidatesFetchData(targetId) {
         return response;
       })
       .then(response => {
-        console.log(response.data);
         return response.data.candidates;
       })
       .then(candidates => dispatch(candidatesFetchDataSuccess(candidates)))
@@ -90,8 +96,6 @@ export function candidatesFetchData(targetId) {
 
 export function voteData(targetId) {
   return dispatch => {
-    dispatch(itemsIsLoading(true));
-
     api
       .vote(targetId)
       .then(response => {
@@ -102,11 +106,32 @@ export function voteData(targetId) {
         return response;
       })
       .then(response => {
-        console.log(response.data);
         return response.data;
       })
 
       .then(candidates => dispatch(candidatesFetchDataSuccess(candidates)))
       .catch(() => dispatch(itemsHasErrored(true)));
+  };
+}
+
+export function createPoll(request) {
+  return dispatch => {
+    api
+      .createPoll(request)
+      .then(response => {
+        if (response.statusText !== "OK") {
+          throw Error(response.statusText);
+        }
+
+        return response;
+      })
+      .then(response => {
+        return response.data;
+      })
+
+      .then(poll => dispatch(addPoll(poll)))
+      .catch(err => {
+        dispatch(itemsHasErrored(true));
+      });
   };
 }

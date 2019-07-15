@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import api from "../lib/api.js";
+
 import CreatePoll from "./CreatePoll";
+import { connect } from "react-redux";
+import { createPoll } from "../actions/index";
 
 class CreatePollContainer extends Component {
   constructor(props) {
@@ -11,27 +13,14 @@ class CreatePollContainer extends Component {
     };
   }
 
-  createPoll = e => {
-    const request = {
-      poll: {
-        name: this.state.name,
-        candidates_attributes: this.state.candidates
-      }
-    };
-    api
-      .createPoll(request)
-      .then(data =>
-        this.setState({
-          name: "",
-          candidates: []
-        })
-      )
-      .catch(error => console.log(error));
-  };
+  /// handle Input change로 할 것인가...
+
   handleNameChange = e => {
+    e.persist();
     this.setState({ name: e.target.value });
   };
   handleCandidateChange = (e, i) => {
+    e.persist();
     if (!this.state.candidates[i]) {
       let newCandidate = { name: e.target.value, count: 0 };
       let updatedCandidates = this.state.candidates.concat(newCandidate);
@@ -43,15 +32,34 @@ class CreatePollContainer extends Component {
   };
 
   render() {
+    const request = {
+      poll: {
+        name: this.state.name,
+        candidates_attributes: this.state.candidates
+      }
+    };
     return (
       <CreatePoll
         name={this.state.name}
         handleNameChange={this.handleNameChange}
         handleCandidateChange={this.handleCandidateChange}
-        createPoll={this.createPoll}
+        createPoll={() => this.props.createPoll(request)}
       />
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    polls: state.polls
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    createPoll: request => dispatch(createPoll(request))
+  };
+};
 
-export default CreatePollContainer;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreatePollContainer);

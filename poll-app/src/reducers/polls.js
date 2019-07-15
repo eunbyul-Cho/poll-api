@@ -16,8 +16,10 @@ export function itemsIsLoading(state = false, action) {
 }
 export function polls(state = [], action) {
   switch (action.type) {
-    case "ITEMS_FETCH_DATA_SUCCESS":
+    case "POLLS_FETCH_DATA_SUCCESS":
       return action.polls;
+    case "CREATE_POLL":
+      return [...state, action.poll];
     default:
       return state;
   }
