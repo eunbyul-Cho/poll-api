@@ -84,9 +84,29 @@ export function candidatesFetchData(targetId) {
         return response.data.candidates;
       })
       .then(candidates => dispatch(candidatesFetchDataSuccess(candidates)))
-      .catch(
-        err => console.log(err)
-        // () => dispatch(itemsHasErrored(true))
-      );
+      .catch(() => dispatch(itemsHasErrored(true)));
+  };
+}
+
+export function voteData(targetId) {
+  return dispatch => {
+    dispatch(itemsIsLoading(true));
+
+    api
+      .vote(targetId)
+      .then(response => {
+        if (response.statusText !== "OK") {
+          throw Error(response.statusText);
+        }
+
+        return response;
+      })
+      .then(response => {
+        console.log(response.data);
+        return response.data;
+      })
+
+      .then(candidates => dispatch(candidatesFetchDataSuccess(candidates)))
+      .catch(() => dispatch(itemsHasErrored(true)));
   };
 }

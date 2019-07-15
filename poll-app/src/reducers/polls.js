@@ -30,3 +30,12 @@ export function candidates(state = [], action) {
       return state;
   }
 }
+
+export function vote(state = [], action) {
+  switch (action.type) {
+    case "VOTE":
+      return action.vote;
+    default:
+      return state;
+  }
+}

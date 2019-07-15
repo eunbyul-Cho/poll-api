@@ -31,7 +31,7 @@ export default {
           headers: { Authorization: token }
         }
       )
-      .then(response => response.data)
+      .then(response => response)
       .catch(error => {
         throw error;
       }),

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-
 import Detail from "./Detail";
-import api from "../lib/api.js";
+
 import { connect } from "react-redux";
-import { candidatesFetchData } from "../actions/index";
+import { candidatesFetchData, voteData } from "../actions/index";
 
 class DetailContainer extends Component {
   constructor(props) {
@@ -13,10 +12,6 @@ class DetailContainer extends Component {
       candidates: []
     };
   }
-
-  vote = candidateId => {
-    api.vote(candidateId).then(data => this.setState({ candidates: data }));
-  };
 
   componentDidMount() {
     let { pollData } = this.props.location.state;
@@ -30,7 +25,11 @@ class DetailContainer extends Component {
     const candidates = this.props.candidates;
 
     return (
-      <Detail pollData={pollData} candidates={candidates} vote={this.vote} />
+      <Detail
+        pollData={pollData}
+        candidates={candidates}
+        vote={this.props.vote}
+      />
     );
   }
 }
@@ -44,7 +43,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: targetId => dispatch(candidatesFetchData(targetId))
+    fetchData: targetId => dispatch(candidatesFetchData(targetId)),
+    vote: candidateId => dispatch(voteData(candidateId))
   };
 };
 export default connect(
