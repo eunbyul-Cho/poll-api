@@ -6,27 +6,30 @@ const CreatePoll = props => (
       <input
         type="text"
         placeholder="pollName"
+        name="name"
         maxLength="50"
-        value={props.name}
-        onChange={props.handleNameChange}
+        onChange={props.handleInputChange}
       />
       <input
         type="text"
         placeholder="candidate1"
+        name="candidate1"
         maxLength="50"
-        onChange={e => props.handleCandidateChange(e, 0)}
+        onChange={props.handleInputChange}
       />
       <input
         type="text"
         placeholder="candidate2"
+        name="candidate2"
         maxLength="50"
-        onChange={e => props.handleCandidateChange(e, 1)}
+        onChange={props.handleInputChange}
       />
       <input
         type="text"
         placeholder="candidate3"
+        name="candidate3"
         maxLength="50"
-        onChange={e => props.handleCandidateChange(e, 2)}
+        onChange={props.handleInputChange}
       />
       <button onClick={props.createPoll}>submit</button>
     </div>

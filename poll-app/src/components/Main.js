@@ -7,12 +7,12 @@ import {
   Switch
 } from "react-router-dom";
 import Home from "./Home.js";
-import LoginContainer from "./LoginContainer.js";
-import PollListContainer from "./PollListContainer.js";
-import DetailContainer from "./DetailContainer.js";
-import SignUpContainer from "./SignUpContainer";
-import CreatePollContainer from "./CreatePollContainer";
-import MyPollContainer from "./MyPollContainer";
+import LoginContainer from "../containers/LoginContainer";
+import PollListContainer from "../containers/PollListContainer.js";
+import DetailContainer from "../containers/DetailContainer.js";
+import SignUpContainer from "../containers/SignUpContainer";
+import CreatePollContainer from "../containers/CreatePollContainer";
+import MyPollContainer from "../containers/MyPollContainer";
 
 const Nav = props => {
   const logout = () => {

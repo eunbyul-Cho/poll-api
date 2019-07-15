@@ -1,17 +1,17 @@
 import React, { Component } from "react";
+
+import MyPoll from "../components/MyPoll";
 import { connect } from "react-redux";
+import { myPollsFetchData, deletePollData } from "../actions/index";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions/index.js";
 
-import PollList from "./PollList";
-import { pollsFetchData } from "../actions/index";
-
-class PollListContainer extends Component {
+class MyPollContainer extends Component {
   fetchData = async () => {
     const { Actions } = this.props;
 
     try {
-      await Actions.getPolls();
+      await Actions.getMyPolls();
     } catch (e) {
       console.log(e);
     }
@@ -19,8 +19,11 @@ class PollListContainer extends Component {
   componentDidMount() {
     this.fetchData();
   }
+
   render() {
-    return <PollList polls={this.props.polls} />;
+    return (
+      <MyPoll polls={this.props.polls} deletePoll={this.props.deletePoll} />
+    );
   }
 }
 
@@ -33,4 +36,4 @@ export default connect(
   dispatch => ({
     Actions: bindActionCreators(actions, dispatch)
   })
-)(PollListContainer);
+)(MyPollContainer);

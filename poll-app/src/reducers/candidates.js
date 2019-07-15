@@ -10,18 +10,21 @@ export default handleActions(
   {
     ...pender({
       type: "GET_CANDIDATES",
+      onPending: (state, action) => {
+        return state;
+      },
       onSuccess: (state, action) => {
         return {
           candidates: action.payload.data.candidates
         };
       }
     }),
-    //////TODO....
+
     ...pender({
       type: "VOTE",
       onSuccess: (state, action) => {
         return {
-          candidates: action.payload.data.candidates
+          state
         };
       }
     })

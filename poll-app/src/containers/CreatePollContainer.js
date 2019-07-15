@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import CreatePoll from "./CreatePoll";
+import CreatePoll from "../components/CreatePoll";
 import { connect } from "react-redux";
 import { createPoll } from "../actions/index";
 
@@ -9,11 +9,23 @@ class CreatePollContainer extends Component {
     super(props);
     this.state = {
       name: "",
-      candidates: []
+      candidate1: "",
+      candidate2: "",
+      candidate3: ""
     };
   }
 
-  /// handle Input change로 할 것인가...
+  /// handle Input change로 할 것인가... ????
+
+  handleInputChange = event => {
+    console.log(event.target);
+    const target = event.target;
+    const name = target.name;
+
+    this.setState({
+      [name]: target.value
+    });
+  };
 
   handleNameChange = e => {
     e.persist();
@@ -32,15 +44,21 @@ class CreatePollContainer extends Component {
   };
 
   render() {
+    const candidates_attributes = [
+      { name: this.state.candidate1, count: 0 },
+      { name: this.state.candidate2, count: 0 },
+      { name: this.state.candidate3, count: 0 }
+    ];
     const request = {
       poll: {
         name: this.state.name,
-        candidates_attributes: this.state.candidates
+        candidates_attributes
       }
     };
     return (
       <CreatePoll
         name={this.state.name}
+        handleInputChange={this.handleInputChange}
         handleNameChange={this.handleNameChange}
         handleCandidateChange={this.handleCandidateChange}
         createPoll={() => this.props.createPoll(request)}

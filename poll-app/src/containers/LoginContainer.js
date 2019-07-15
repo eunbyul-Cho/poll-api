@@ -1,28 +1,27 @@
 import React, { Component } from "react";
-import SignUp from "./SignUp";
 import api from "../lib/api.js";
+import Login from "../components/Login.js";
 
-class SignUpContainer extends Component {
+class LoginContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
       email: "",
-      password: "",
-      passwordConfirmation: ""
+      password: ""
     };
   }
 
-  signup = () => {
+  login = () => {
     const request = {
-      name: this.state.name,
       email: this.state.email,
       password: this.state.password
     };
     api
-      .signup(request)
+      .login(request)
       .then(data => {
+        console.log(data);
         localStorage.setItem("jwt", data.auth_token);
+
         this.setState({
           inputValue: ""
         });
@@ -38,10 +37,18 @@ class SignUpContainer extends Component {
       [name]: target.value
     });
   };
-
   render() {
-    return <SignUp signup={this.signup} />;
+    return (
+      <Login
+        handleInputChange={this.handleInputChange}
+        email={this.state.email}
+        password={this.state.password}
+        handleEmailChange={this.handleEmailChange}
+        handlePasswordChange={this.handlePasswordChange}
+        login={this.login}
+      />
+    );
   }
 }
 
-export default SignUpContainer;
+export default LoginContainer;
