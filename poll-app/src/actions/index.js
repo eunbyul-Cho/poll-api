@@ -1,4 +1,9 @@
 import api from "../lib/api.js";
+import { createAction, handleActions } from "redux-actions";
+import { pender, applyPenders } from "redux-pender";
+
+export const getPolls = createAction("GET_POLLS", api.getPolls);
+export const getMyPolls = createAction("GET_MY_POLLS", api.getMyPoll);
 
 export function itemsHasErrored(bool) {
   return {

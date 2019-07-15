@@ -1,9 +1,12 @@
 import { combineReducers } from "redux";
-import { polls, itemsHasErrored, itemsIsLoading, candidates } from "./polls";
-
+import { itemsHasErrored, itemsIsLoading, candidates } from "./polls";
+import polls from "./pender";
+import { penderReducer } from "redux-pender";
 export default combineReducers({
   polls,
+
   itemsHasErrored,
   itemsIsLoading,
-  candidates
+  candidates,
+  pender: penderReducer
 });
