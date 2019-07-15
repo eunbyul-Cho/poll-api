@@ -8,14 +8,10 @@ class PollListContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      polls: [],
-      inputValue: ""
+      polls: []
     };
   }
 
-  handleChange = e => {
-    this.setState({ inputValue: e.target.value });
-  };
   componentDidMount() {
     this.props.fetchData();
   }
