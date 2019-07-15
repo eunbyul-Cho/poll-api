@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import api from "../lib/api.js";
 import MyPoll from "./MyPoll";
 import { connect } from "react-redux";
-import { myPollsFetchData } from "../actions/index";
+import { myPollsFetchData, deletePollData } from "../actions/index";
 class MyPollContainer extends Component {
   state = {
     polls: []
@@ -19,20 +19,15 @@ class MyPollContainer extends Component {
       })
       .catch(error => console.log(error));
   };
-  getMyPoll = e => {
-    api
-      .getMyPoll()
-      .then(response => {
-        this.setState({ polls: response.data });
-      })
-      .catch(error => console.log(error));
-  };
+
   componentDidMount() {
     this.props.fetchData();
   }
 
   render() {
-    return <MyPoll polls={this.props.polls} deletePoll={this.deletePoll} />;
+    return (
+      <MyPoll polls={this.props.polls} deletePoll={this.props.deletePoll} />
+    );
   }
 }
 const mapStateToProps = state => {
@@ -45,7 +40,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: () => dispatch(myPollsFetchData())
+    fetchData: () => dispatch(myPollsFetchData()),
+    deletePoll: pollId => dispatch(deletePollData(pollId))
   };
 };
 export default connect(

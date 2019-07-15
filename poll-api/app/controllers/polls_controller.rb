@@ -26,6 +26,7 @@ class PollsController < ApplicationController
   def update
     @poll.update(poll_params)
     head :no_content
+
   end
 
   # DELETE /polls/:id

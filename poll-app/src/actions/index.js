@@ -25,6 +25,12 @@ export function addPoll(poll) {
     poll
   };
 }
+export function deltePoll(id) {
+  return {
+    type: "DELETE_POLL",
+    id
+  };
+}
 //TODO 하나씩 set 해야 하나???
 
 export function candidatesFetchDataSuccess(candidates) {
@@ -130,7 +136,30 @@ export function createPoll(request) {
       })
 
       .then(poll => dispatch(addPoll(poll)))
-      .catch(err => {
+      .catch(() => {
+        dispatch(itemsHasErrored(true));
+      });
+  };
+}
+
+export function deletePollData(pollId) {
+  return dispatch => {
+    api
+      .deletePoll(pollId)
+      .then(response => {
+        if (response.status !== 204) {
+          throw Error(response.status);
+        }
+        let deletedId = response.config.url.split("/").pop();
+
+        return deletedId;
+      })
+      .then(deletedId => {
+        return parseInt(deletedId);
+      })
+
+      .then(id => dispatch(deltePoll(id)))
+      .catch(() => {
         dispatch(itemsHasErrored(true));
       });
   };

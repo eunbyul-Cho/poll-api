@@ -20,6 +20,8 @@ export function polls(state = [], action) {
       return action.polls;
     case "CREATE_POLL":
       return [...state, action.poll];
+    case "DELETE_POLL":
+      return state.filter(poll => poll.id !== action.id);
     default:
       return state;
   }
