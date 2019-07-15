@@ -3,6 +3,8 @@ import Detail from "./Detail";
 
 import { connect } from "react-redux";
 import { candidatesFetchData, voteData } from "../actions/index";
+import { bindActionCreators } from "redux";
+import * as actions from "../actions/index.js";
 
 class DetailContainer extends Component {
   constructor(props) {
@@ -12,11 +14,18 @@ class DetailContainer extends Component {
       candidates: []
     };
   }
-
-  componentDidMount() {
+  fetchData = async () => {
+    const { Actions } = this.props;
     let { pollData } = this.props.location.state;
     let targetId = pollData.id;
-    this.props.fetchData(targetId);
+    try {
+      await Actions.getCandidates(targetId);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  componentDidMount() {
+    this.fetchData();
   }
 
   render() {
@@ -33,7 +42,7 @@ class DetailContainer extends Component {
     );
   }
 }
-
+/*
 const mapStateToProps = state => {
   return {
     candidates: state.candidates,
@@ -47,7 +56,15 @@ const mapDispatchToProps = dispatch => {
     vote: candidateId => dispatch(voteData(candidateId))
   };
 };
+*/
+
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  state => ({
+    candidates: state.candidates.candidates,
+    loading: state.pender.pending["PENDER_TEST"],
+    error: state.pender.failure["PENDER_TEST"]
+  }),
+  dispatch => ({
+    Actions: bindActionCreators(actions, dispatch)
+  })
 )(DetailContainer);

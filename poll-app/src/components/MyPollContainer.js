@@ -12,13 +12,11 @@ class MyPollContainer extends Component {
 
     try {
       await Actions.getMyPolls();
-      console.log("data is fetched!");
     } catch (e) {
       console.log(e);
     }
   };
   componentDidMount() {
-    //  this.props.fetchData();
     this.fetchData();
   }
 
@@ -28,26 +26,7 @@ class MyPollContainer extends Component {
     );
   }
 }
-/*
-const mapStateToProps = state => {
-  return {
-    polls: state.polls,
-    hasErrored: state.itemsHasErrored,
-    isLoading: state.itemsIsLoading
-  };
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchData: () => dispatch(myPollsFetchData()),
-    deletePoll: pollId => dispatch(deletePollData(pollId))
-  };
-};
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MyPollContainer);
-*/
 export default connect(
   state => ({
     polls: state.polls.polls,
