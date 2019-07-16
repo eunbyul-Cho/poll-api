@@ -1,6 +1,6 @@
 import { handleActions } from "redux-actions";
 
-import { pender, applyPenders } from "redux-pender";
+import { pender } from "redux-pender";
 
 const initialState = {
   polls: []

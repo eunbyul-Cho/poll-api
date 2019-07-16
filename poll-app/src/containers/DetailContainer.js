@@ -7,12 +7,16 @@ import { bindActionCreators } from "redux";
 import * as actions from "../actions/index.js";
 
 class DetailContainer extends Component {
+  state = {
+    isLoading: true
+  };
   fetchData = async () => {
     const { Actions } = this.props;
     let { pollData } = this.props.location.state;
     let targetId = pollData.id;
     try {
       await Actions.getCandidates(targetId);
+      this.setState({ isLoading: false });
     } catch (e) {
       console.log(e);
     }
@@ -35,10 +39,10 @@ class DetailContainer extends Component {
   render() {
     const { pollData } = this.props.location.state;
 
-    const candidates = this.props.candidates;
-    console.log(candidates);
-    if (this.props.loading) {
-      return <div>loading</div>;
+    let candidates = this.props.candidates;
+    console.log(this.props.loading);
+    if (!candidates) {
+      candidates = [];
     }
     return (
       <Detail
