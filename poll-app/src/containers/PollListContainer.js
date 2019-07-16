@@ -6,6 +6,7 @@ import * as actions from "../actions/index.js";
 import PollList from "../components/PollList";
 
 class PollListContainer extends Component {
+  ///TODO
   fetchData = async () => {
     const { Actions } = this.props;
 
