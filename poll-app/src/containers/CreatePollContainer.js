@@ -19,7 +19,6 @@ class CreatePollContainer extends Component {
   /// handle Input change로 할 것인가... ????
 
   handleInputChange = event => {
-    console.log(event.target);
     const target = event.target;
     const name = target.name;
 

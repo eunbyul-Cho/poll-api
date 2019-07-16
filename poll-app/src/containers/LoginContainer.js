@@ -19,7 +19,6 @@ class LoginContainer extends Component {
     api
       .login(request)
       .then(data => {
-        console.log(data);
         localStorage.setItem("jwt", data.auth_token);
 
         this.setState({

@@ -127,29 +127,7 @@ export function voteData(targetId) {
       .catch(() => dispatch(itemsHasErrored(true)));
   };
 }
-/*
-export function createPoll(request) {
-  return dispatch => {
-    api
-      .createPoll(request)
-      .then(response => {
-        if (response.statusText !== "OK") {
-          throw Error(response.statusText);
-        }
 
-        return response;
-      })
-      .then(response => {
-        return response.data;
-      })
-
-      .then(poll => dispatch(addPoll(poll)))
-      .catch(() => {
-        dispatch(itemsHasErrored(true));
-      });
-  };
-}
-*/
 export function deletePollData(pollId) {
   return dispatch => {
     api
