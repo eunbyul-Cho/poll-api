@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const Home = () => (
   <>
-    <div>Poll</div>
     <h2>YOU MUST LOGIN FIRST</h2>
     <Link to="login">
       <button id="puibic-toLoginBtn" type="submit">
