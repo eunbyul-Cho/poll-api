@@ -23,6 +23,23 @@ export default handleActions(
           polls: action.payload.data
         };
       }
+    }),
+    ...pender({
+      type: "DELETE_POLL",
+      onSuccess: (state, action) => {
+        let targetId = action.payload.config.url.split("/").pop();
+        return {
+          polls: state.polls.filter(poll => poll.id !== parseInt(targetId))
+        };
+      }
+    }),
+    ...pender({
+      type: "CREATE_POLL",
+      onSuccess: (state, action) => {
+        return {
+          polls: [...state, action.data]
+        };
+      }
     })
   },
   initialState

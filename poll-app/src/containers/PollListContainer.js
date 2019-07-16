@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import * as actions from "../actions/index.js";
 
 import PollList from "../components/PollList";
-import { pollsFetchData } from "../actions/index";
 
 class PollListContainer extends Component {
   fetchData = async () => {
@@ -27,8 +26,8 @@ class PollListContainer extends Component {
 export default connect(
   state => ({
     polls: state.polls.polls,
-    loading: state.pender.pending["PENDER_TEST"],
-    error: state.pender.failure["PENDER_TEST"]
+    loading: state.pender.pending["GET_POLLS"],
+    error: state.pender.failure["GET_POLLS"]
   }),
   dispatch => ({
     Actions: bindActionCreators(actions, dispatch)

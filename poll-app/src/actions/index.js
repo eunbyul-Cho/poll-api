@@ -1,11 +1,13 @@
 import api from "../lib/api.js";
-import { createAction, handleActions } from "redux-actions";
-import { pender, applyPenders } from "redux-pender";
+import { createAction } from "redux-actions";
 
 export const getPolls = createAction("GET_POLLS", api.getPolls);
 export const getMyPolls = createAction("GET_MY_POLLS", api.getMyPoll);
 export const getCandidates = createAction("GET_CANDIDATES", api.getCandidates);
 export const vote = createAction("VOTE", api.vote);
+export const deletePoll = createAction("DELETE_POLL", api.deletePoll);
+export const createPoll = createAction("CREATE_POLL", api.createPoll);
+
 export function itemsHasErrored(bool) {
   return {
     type: "ITEMS_HAS_ERRORED",
@@ -125,7 +127,7 @@ export function voteData(targetId) {
       .catch(() => dispatch(itemsHasErrored(true)));
   };
 }
-
+/*
 export function createPoll(request) {
   return dispatch => {
     api
@@ -147,7 +149,7 @@ export function createPoll(request) {
       });
   };
 }
-
+*/
 export function deletePollData(pollId) {
   return dispatch => {
     api

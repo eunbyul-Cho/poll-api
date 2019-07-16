@@ -22,9 +22,12 @@ export default handleActions(
 
     ...pender({
       type: "VOTE",
+      onPending: (state, action) => {
+        return state;
+      },
       onSuccess: (state, action) => {
         return {
-          state
+          candidates: action.payload.data
         };
       }
     })
