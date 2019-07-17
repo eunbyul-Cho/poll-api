@@ -6,18 +6,8 @@ import * as actions from "../actions/index.js";
 import PollList from "../components/PollList";
 
 class PollListContainer extends Component {
-  ///TODO
-  fetchData = async () => {
-    const { Actions } = this.props;
-
-    try {
-      await Actions.getPolls();
-    } catch (e) {
-      console.log(e);
-    }
-  };
   componentDidMount() {
-    this.fetchData();
+    this.props.Actions.getPolls();
   }
   render() {
     return <PollList polls={this.props.polls} />;

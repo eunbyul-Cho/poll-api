@@ -25,22 +25,6 @@ class CreatePollContainer extends Component {
     });
   };
 
-  handleNameChange = e => {
-    e.persist();
-    this.setState({ name: e.target.value });
-  };
-  handleCandidateChange = (e, i) => {
-    e.persist();
-    if (!this.state.candidates[i]) {
-      let newCandidate = { name: e.target.value, count: 0 };
-      let updatedCandidates = this.state.candidates.concat(newCandidate);
-      this.setState({ candidates: updatedCandidates });
-    } else {
-      let targetCandidate = this.state.candidates[i];
-      targetCandidate.name = e.target.value;
-    }
-  };
-
   render() {
     const candidates_attributes = [
       { name: this.state.candidate1, count: 0 },

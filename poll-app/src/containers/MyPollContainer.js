@@ -7,17 +7,8 @@ import { bindActionCreators } from "redux";
 import * as actions from "../actions/index.js";
 
 class MyPollContainer extends Component {
-  fetchData = async () => {
-    const { Actions } = this.props;
-
-    try {
-      await Actions.getMyPolls();
-    } catch (e) {
-      console.log(e);
-    }
-  };
   componentDidMount() {
-    this.fetchData();
+    this.props.Actions.getMyPolls();
   }
 
   render() {

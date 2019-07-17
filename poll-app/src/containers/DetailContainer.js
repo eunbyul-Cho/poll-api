@@ -7,31 +7,14 @@ import { bindActionCreators } from "redux";
 import * as actions from "../actions/index.js";
 
 class DetailContainer extends Component {
-  fetchData = async () => {
-    const { Actions } = this.props;
+  componentDidMount() {
     let { pollData } = this.props.location.state;
     let targetId = pollData.id;
-    try {
-      await Actions.getCandidates(targetId);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  voteToCandidate = async candidateId => {
-    const { Actions } = this.props;
-
-    try {
-      await Actions.vote(candidateId);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-  componentDidMount() {
-    this.fetchData();
+    this.props.Actions.getCandidates(targetId);
   }
 
   render() {
+    const voteToCandidate = this.props.Actions.vote;
     const { pollData } = this.props.location.state;
 
     let candidates = this.props.candidates;
@@ -40,7 +23,7 @@ class DetailContainer extends Component {
       <Detail
         name={pollData.name}
         candidates={candidates}
-        vote={this.voteToCandidate}
+        vote={voteToCandidate}
       />
     );
   }
