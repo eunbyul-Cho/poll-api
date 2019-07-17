@@ -25,8 +25,16 @@ const AppRouter = props => (
       render={() => (props.isLoggedIn ? <Redirect to="/pollList" /> : <Home />)}
     />
     <Route path="/pollList" component={PollListContainer} />
-    <Route path="/login" component={LoginContainer} />
-    <Route path="/logout" component={LogoutContainer} />
+    <Route
+      path="/login"
+      component={LoginContainer}
+      toggleLogIn={props.toggleLogIn}
+    />
+    <Route
+      path="/logout"
+      component={LogoutContainer}
+      toggleLogIn={props.toggleLogIn}
+    />
     <Route path="/detail" component={DetailContainer} />
     <Route path="/signup" component={SignUpContainer} />
     <Route path="/createPoll" component={CreatePollContainer} />
@@ -48,7 +56,10 @@ class Main extends Component {
           isLoggedIn={this.state.isLoggedIn}
         />
         <div className="container">
-          <AppRouter isLoggedIn={this.state.isLoggedIn} />
+          <AppRouter
+            isLoggedIn={this.state.isLoggedIn}
+            toggleLogIn={this.toggleLogIn}
+          />
         </div>
       </Router>
     );

@@ -3,13 +3,10 @@ import api from "../lib/api.js";
 import Login from "../components/Login.js";
 
 class LoginContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
+  state = {
+    email: "",
+    password: ""
+  };
 
   login = () => {
     const request = {
@@ -27,7 +24,7 @@ class LoginContainer extends Component {
 
         alert("logged in");
         this.props.location.props.toggleLogIn();
-        this.props.history.push("/");
+        this.props.history.push("/pollList");
       })
       .catch(error => console.log(error));
   };
