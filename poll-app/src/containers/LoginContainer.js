@@ -24,6 +24,10 @@ class LoginContainer extends Component {
         this.setState({
           inputValue: ""
         });
+
+        alert("logged in");
+        this.props.location.props.toggleLogIn();
+        this.props.history.push("/");
       })
       .catch(error => console.log(error));
   };
@@ -37,16 +41,19 @@ class LoginContainer extends Component {
     });
   };
   render() {
-    return (
-      <Login
-        handleInputChange={this.handleInputChange}
-        email={this.state.email}
-        password={this.state.password}
-        handleEmailChange={this.handleEmailChange}
-        handlePasswordChange={this.handlePasswordChange}
-        login={this.login}
-      />
-    );
+    console.log("loginprop", this.props);
+    let { isLoggedIn } = this.props;
+    if (!isLoggedIn) {
+      return (
+        <Login
+          handleInputChange={this.handleInputChange}
+          email={this.state.email}
+          password={this.state.password}
+          isLoggedIn={this.props.isLoggedIn}
+          login={this.login}
+        />
+      );
+    }
   }
 }
 

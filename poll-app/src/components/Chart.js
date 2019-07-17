@@ -24,7 +24,6 @@ const Chart = props => {
   };
   return (
     <>
-      <div>Chart</div>
       <Doughnut data={data} />
     </>
   );

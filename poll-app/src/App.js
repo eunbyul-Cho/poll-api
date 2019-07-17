@@ -7,9 +7,7 @@ import "./App.css";
 function App() {
   return (
     <div className="container">
-      <div className="header">
-        <h1>Poll</h1>
-      </div>
+      <div className="header"></div>
       <Main />
     </div>
   );

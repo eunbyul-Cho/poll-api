@@ -1,7 +1,11 @@
 import React from "react";
 
 const Login = props => {
-  const { handleInputChange, login } = props;
+  const { handleInputChange, login, isLoggedIn } = props;
+
+  if (isLoggedIn) {
+    return <div>You are LoggedIn now</div>;
+  }
   return (
     <>
       <div className="inputContainer">

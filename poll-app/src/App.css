@@ -40,5 +40,9 @@
 .candidate-container {
   display: flex;
 }
-input {
+ul {
+  display: flex;
+}
+li {
+  margin-left: 30px;
 }

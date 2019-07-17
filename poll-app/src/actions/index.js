@@ -7,3 +7,9 @@ export const getCandidates = createAction("GET_CANDIDATES", api.getCandidates);
 export const vote = createAction("VOTE", api.vote);
 export const deletePoll = createAction("DELETE_POLL", api.deletePoll);
 export const createPoll = createAction("CREATE_POLL", api.createPoll);
+export const login = () => ({
+  type: "LOGIN"
+});
+export const logout = () => ({
+  type: "LOGOUT"
+});
