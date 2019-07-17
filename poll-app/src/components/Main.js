@@ -38,8 +38,6 @@ class Main extends Component {
     isLoggedIn: localStorage.jwt ? true : false
   };
   toggleLogIn = () => {
-    console.log("hi");
-    console.log(this.state);
     this.setState({ isLoggedIn: !this.state.isLoggedIn });
   };
   render() {

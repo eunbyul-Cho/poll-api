@@ -41,7 +41,6 @@ class LoginContainer extends Component {
     });
   };
   render() {
-    console.log("loginprop", this.props);
     let { isLoggedIn } = this.props;
     if (!isLoggedIn) {
       return (
