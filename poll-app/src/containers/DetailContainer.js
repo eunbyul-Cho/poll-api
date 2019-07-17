@@ -14,18 +14,12 @@ class DetailContainer extends Component {
   }
 
   render() {
-    const voteToCandidate = this.props.Actions.vote;
+    const { vote } = this.props.Actions;
     const { pollData } = this.props.location.state;
 
-    let candidates = this.props.candidates;
+    let { candidates } = this.props;
 
-    return (
-      <Detail
-        name={pollData.name}
-        candidates={candidates}
-        vote={voteToCandidate}
-      />
-    );
+    return <Detail name={pollData.name} candidates={candidates} vote={vote} />;
   }
 }
 

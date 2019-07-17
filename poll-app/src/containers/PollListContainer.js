@@ -7,10 +7,12 @@ import PollList from "../components/PollList";
 
 class PollListContainer extends Component {
   componentDidMount() {
-    this.props.Actions.getPolls();
+    const { getPolls } = this.props.Actions;
+    getPolls();
   }
   render() {
-    return <PollList polls={this.props.polls} />;
+    const { polls } = this.props;
+    return <PollList polls={polls} />;
   }
 }
 

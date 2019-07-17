@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import {
   BrowserRouter as Router,
@@ -52,25 +52,17 @@ const AppRouter = () => (
     <Route path="/myPoll" component={MyPollContainer} />
   </Switch>
 );
+const Main = props => {
+  let isLoggedIn = localStorage.getItem("jwt") ? true : false;
 
-class Main extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    let isLoggedIn = localStorage.getItem("jwt") ? true : false;
-
-    return (
-      <Router>
-        <Nav isLoggedIn={isLoggedIn} />
-        <div className="container">
-          <AppRouter />
-        </div>
-      </Router>
-    );
-  }
-}
+  return (
+    <Router>
+      <Nav isLoggedIn={isLoggedIn} />
+      <div className="container">
+        <AppRouter />
+      </div>
+    </Router>
+  );
+};
 
 export default Main;

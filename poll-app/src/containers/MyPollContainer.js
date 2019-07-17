@@ -8,16 +8,14 @@ import * as actions from "../actions/index.js";
 
 class MyPollContainer extends Component {
   componentDidMount() {
-    this.props.Actions.getMyPolls();
+    const { getMyPolls } = this.props.Actions;
+    getMyPolls();
   }
 
   render() {
-    return (
-      <MyPoll
-        polls={this.props.polls}
-        deletePoll={this.props.Actions.deletePoll}
-      />
-    );
+    const { polls } = this.props;
+    const { deletePoll } = this.props.Actions;
+    return <MyPoll polls={polls} deletePoll={deletePoll} />;
   }
 }
 

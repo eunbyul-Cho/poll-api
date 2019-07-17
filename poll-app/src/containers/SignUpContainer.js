@@ -40,7 +40,9 @@ class SignUpContainer extends Component {
   };
 
   render() {
-    return <SignUp signup={this.signup} />;
+    return (
+      <SignUp signup={this.signup} handleInputChange={this.handleInputChange} />
+    );
   }
 }
 

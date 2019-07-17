@@ -2,8 +2,9 @@ import React from "react";
 import { Doughnut } from "react-chartjs-2";
 
 const Chart = props => {
+  const { candidates } = props;
   let data = {
-    labels: props.candidates.map(e => e.name),
+    labels: candidates.map(e => e.name),
     datasets: [
       {
         label: "My First dataset",
@@ -17,7 +18,7 @@ const Chart = props => {
           "rgba(54, 162, 235, 0.2)",
           "rgba(255, 206, 86, 0.2)"
         ],
-        data: props.candidates.map(e => e.count)
+        data: candidates.map(e => e.count)
       }
     ]
   };

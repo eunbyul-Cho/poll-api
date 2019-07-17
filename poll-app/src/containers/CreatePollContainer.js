@@ -6,15 +6,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "../actions/index.js";
 class CreatePollContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      candidate1: "",
-      candidate2: "",
-      candidate3: ""
-    };
-  }
+  state = {
+    name: "",
+    candidate1: "",
+    candidate2: "",
+    candidate3: ""
+  };
 
   handleInputChange = event => {
     const target = event.target;
@@ -38,13 +35,15 @@ class CreatePollContainer extends Component {
         candidates_attributes
       }
     };
+    const { name } = this.state;
+    const { createPoll } = this.props.Actions;
     return (
       <CreatePoll
-        name={this.state.name}
+        name={name}
         handleInputChange={this.handleInputChange}
         handleNameChange={this.handleNameChange}
         handleCandidateChange={this.handleCandidateChange}
-        createPoll={() => this.props.Actions.createPoll(request)}
+        createPoll={() => createPoll(request)}
       />
     );
   }
