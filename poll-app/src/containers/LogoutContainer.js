@@ -6,6 +6,7 @@ class LogoutContainer extends Component {
   logout = () => {
     localStorage.removeItem("jwt");
     alert("logged out");
+    console.log(this.props);
     this.props.location.props.toggleLogIn();
     this.props.history.push("/");
   };

@@ -3,7 +3,6 @@ let token = "Bearer " + localStorage.getItem("jwt");
 
 export default {
   getPolls: () => {
-    /// 질문....
     token = "Bearer " + localStorage.getItem("jwt");
     return axios
       .get("api/polls", { headers: { Authorization: token } })

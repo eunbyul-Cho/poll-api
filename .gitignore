@@ -5,3 +5,8 @@
 !.elasticbeanstalk/*.global.yml
 
 poll-api.zip
+
+        poll-api 2.zip
+        poll-api/.ebextensions/
+        poll-api/config/database aws.yml
+        poll-api/config/database local.yml
