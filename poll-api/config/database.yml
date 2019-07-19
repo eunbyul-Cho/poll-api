@@ -12,8 +12,7 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  pool: 5
-  host: aa5yplxe6vrrwx.c9xlnvkgqag8.us-west-2.rds.amazonaws.com
+  pool: 5,
   username: jamie
   password: 12341234
   socket: /tmp/mysql.sock
