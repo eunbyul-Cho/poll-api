@@ -13,13 +13,14 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5,
+  host: aagourc4xnhs4k.c9xlnvkgqag8.us-west-2.rds.amazonaws.com
   username: jamie
   password: 12341234
-  socket: /opt/lampp/var/mysql/mysql.sock
+  socket: /tmp/mysql.sock
 
 development:
   <<: *default
-  database: poll-api_development
+  database: ebdb
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -48,7 +49,7 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-<<: *default
+  <<: *default
   adapter: mysql2
   encoding: utf8
   database: <%= ENV['RDS_DB_NAME'] %>
