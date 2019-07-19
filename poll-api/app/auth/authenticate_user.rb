@@ -1,4 +1,5 @@
 class AuthenticateUser
+  require 'Message'
   def initialize(email, password)
     @email = email
     @password = password
