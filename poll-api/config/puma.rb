@@ -11,15 +11,18 @@ threads threads_count, threads_count
 #
 port        ENV.fetch("PORT") { 3000 }
 
+
 # Specifies the `environment` that Puma will run in.
 #
-environment ENV.fetch("RAILS_ENV") { "development" }
+environment ENV.fetch("RAILS_ENV") { "production" }
 
-# bind "unix:///var/run/puma/my_app.sock"
-# pidfile "/var/run/puma/my_app.sock"
+
+
 bind 'tcp://0.0.0.0:8080'
+
+
 # Specifies the number of `workers` to boot in clustered mode.
-# Workers are forked webserver processes. If using threads and workers together
+# Workers are forked webserverrails  processes. If using threads and workers together
 # the concurrency of the application would be max `threads` * `workers`.
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).

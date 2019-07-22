@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20190705060208) do
 
-  create_table "candidates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "candidates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.integer  "count"
     t.integer  "poll_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20190705060208) do
     t.index ["poll_id"], name: "index_candidates_on_poll_id", using: :btree
   end
 
-  create_table "polls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "polls", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20190705060208) do
     t.index ["user_id"], name: "index_polls_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password_digest"

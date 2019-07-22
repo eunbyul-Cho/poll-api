@@ -5,3 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create(name:"apple", email: "apple@gmail.com", password: "apple")
+# INSERT INTO users (name,email,password_digest) VALUES('apple','apple@gmail.com','apple')
