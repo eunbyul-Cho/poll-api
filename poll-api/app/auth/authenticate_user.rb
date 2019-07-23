@@ -1,5 +1,5 @@
 class AuthenticateUser
-  require 'Message'
+
   def initialize(email, password)
     @email = email
     @password = password
@@ -19,6 +19,6 @@ class AuthenticateUser
     user = User.find_by(email: email)
     return user if user && user.authenticate(password)
     # raise Authentication error if credentials are invalid
-    raise(ExceptionHandler::AuthenticationError, Message.invalid_credentials)
+    raise(ExceptionHandler::AuthenticationError)
   end
 end
