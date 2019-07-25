@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import api from "../lib/api.js";
 import Login from "../components/Login.js";
-
+import axios from "axios";
 class LoginContainer extends Component {
   state = {
     email: "",
@@ -13,6 +13,19 @@ class LoginContainer extends Component {
       email: this.state.email,
       password: this.state.password
     };
+    axios
+      .post(
+        `http://pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com/auth/login`,
+        request
+      )
+      .then(response => {
+        console.log(response);
+        return response.data;
+      })
+      .catch(error => {
+        throw error;
+      });
+    /*
     api
       .login(request)
       .then(data => {
@@ -28,6 +41,7 @@ class LoginContainer extends Component {
         this.props.history.push("/pollList");
       })
       .catch(error => console.log(error));
+      */
   };
 
   handleInputChange = event => {

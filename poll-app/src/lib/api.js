@@ -1,11 +1,12 @@
 import axios from "axios";
 let token = "Bearer " + localStorage.getItem("jwt");
 
-let aws = "pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com";
+let aws = "https://pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com";
 
 export default {
   getPolls: () => {
     token = "Bearer " + localStorage.getItem("jwt");
+
     return axios
       .get(`${aws}/api/polls`, { headers: { Authorization: token } })
       .then(response => response)
@@ -63,8 +64,13 @@ export default {
       .catch(error => {
         throw error;
       }),
-  login: request =>
-    axios
+  login: request => {
+    let url = `${aws}/auth/login`;
+    console.log(url);
+    let urlarr = url.split("/");
+    urlarr.splice(2, 1);
+    console.log(urlarr.join(""));
+    return axios
       .post(
         `pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com/auth/login`,
         request
@@ -75,7 +81,8 @@ export default {
       })
       .catch(error => {
         throw error;
-      }),
+      });
+  },
   signup: request =>
     axios
       .post(`${aws}/signup`, request)
