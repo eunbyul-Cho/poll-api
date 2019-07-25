@@ -1,0 +1,8 @@
+namespace :start do
+  task :delvelpment do
+    exec 'heroku local -f Procfile.dev'
+  end
+end
+
+desc :'Start delvelpment server'
+task :start => 'start:delvelpment'
