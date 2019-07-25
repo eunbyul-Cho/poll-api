@@ -1,12 +1,13 @@
 import axios from "axios";
 let token = "Bearer " + localStorage.getItem("jwt");
+
 let aws = "pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com";
 
 export default {
   getPolls: () => {
     token = "Bearer " + localStorage.getItem("jwt");
     return axios
-      .get("api/polls", { headers: { Authorization: token } })
+      .get(`${aws}/api/polls`, { headers: { Authorization: token } })
       .then(response => response)
       .catch(error => {
         throw error;
@@ -16,7 +17,9 @@ export default {
   getCandidates: targetId =>
     // // props 정보는 id, name만 포함하므로 poll id를 가지고 candidate정보를 불러옴
     axios
-      .get(`api/polls/${targetId}`, { headers: { Authorization: token } })
+      .get(`${aws}/api/polls/${targetId}`, {
+        headers: { Authorization: token }
+      })
       .then(response => response)
       .catch(error => {
         throw error;
@@ -24,7 +27,7 @@ export default {
   vote: candidateId =>
     axios
       .put(
-        `api/candidates/${candidateId}`,
+        `${aws}/api/candidates/${candidateId}`,
 
         { id: candidateId },
         {
@@ -37,7 +40,7 @@ export default {
       }),
   createPoll: request =>
     axios
-      .post("/api/polls", request, { headers: { Authorization: token } })
+      .post(`${aws}/api/polls`, request, { headers: { Authorization: token } })
       .then(response => {
         return response;
       })
@@ -46,31 +49,36 @@ export default {
       }),
   deletePoll: pollId =>
     axios
-      .delete(`api/polls/${pollId}`, { headers: { Authorization: token } })
+      .delete(`${aws}/api/polls/${pollId}`, {
+        headers: { Authorization: token }
+      })
       .then(response => response)
       .catch(error => {
         throw error;
       }),
   getMyPoll: () =>
     axios
-      .get(`/api/mypoll`, { headers: { Authorization: token } })
+      .get(`${aws}/api/mypoll`, { headers: { Authorization: token } })
       .then(response => response)
       .catch(error => {
         throw error;
       }),
   login: request =>
     axios
-      .post("/auth/login", request)
-      .then(response => response.data)
+      .post(
+        `pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com/auth/login`,
+        request
+      )
+      .then(response => {
+        console.log(response);
+        return response.data;
+      })
       .catch(error => {
         throw error;
       }),
   signup: request =>
     axios
-      .post(
-        "http://pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com/signup",
-        request
-      )
+      .post(`${aws}/signup`, request)
       .then(response => {
         console.log(response);
         return response.data;

@@ -16,6 +16,7 @@ class LoginContainer extends Component {
     api
       .login(request)
       .then(data => {
+        console.log("data from front", data);
         localStorage.setItem("jwt", data.auth_token);
 
         this.setState({
@@ -38,7 +39,6 @@ class LoginContainer extends Component {
     });
   };
   render() {
-
     let { isLoggedIn } = this.props;
     if (!isLoggedIn) {
       return (
