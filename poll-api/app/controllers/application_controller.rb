@@ -7,8 +7,12 @@ class ApplicationController < ActionController::API
   before_action :authorize_request
   attr_reader :current_user
   private
-
-  # Check for valid request token and return user
+  config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins '*'
+      resource '*', headers: :any, methods: [:get, :post, :options]
+  end
+    # Check for valid request token and return user
   def authorize_request
     @current_user = (AuthorizeApiRequest.new(request.headers).call)[:user]
   end
