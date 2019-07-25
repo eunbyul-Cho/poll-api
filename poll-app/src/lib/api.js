@@ -1,5 +1,6 @@
 import axios from "axios";
 let token = "Bearer " + localStorage.getItem("jwt");
+let aws = "pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com";
 
 export default {
   getPolls: () => {
@@ -66,8 +67,14 @@ export default {
       }),
   signup: request =>
     axios
-      .post("/signup", request)
-      .then(response => response.data)
+      .post(
+        "http://pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com/signup",
+        request
+      )
+      .then(response => {
+        console.log(response);
+        return response.data;
+      })
       .catch(error => {
         throw error;
       })
