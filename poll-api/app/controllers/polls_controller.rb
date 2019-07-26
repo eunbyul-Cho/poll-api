@@ -17,7 +17,6 @@ class PollsController < ApplicationController
 
   # GET /polls/:id
   def show
-
     candidates = @poll.candidates.as_json(only: [:id, :name, :count])
     data = {id:@poll.id,name:@poll.name,user_id:@poll.user_id,candidates:candidates}
     json_response(data)
@@ -26,7 +25,6 @@ class PollsController < ApplicationController
   def update
     @poll.update(poll_params)
     head :no_content
-
   end
 
   # DELETE /polls/:id
