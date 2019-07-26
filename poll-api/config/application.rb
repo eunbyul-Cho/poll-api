@@ -34,7 +34,7 @@ module PollApi
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :delete, :update, :options]
+        resource '*', headers: :any, methods:  methods: [:get, :post, :delete, :put, :patch, :options, :head]
       end
     end
     config.eager_load_paths << Rails.root.join('lib')
