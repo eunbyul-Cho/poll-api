@@ -43,7 +43,9 @@ class CreatePollContainer extends Component {
         handleInputChange={this.handleInputChange}
         handleNameChange={this.handleNameChange}
         handleCandidateChange={this.handleCandidateChange}
-        createPoll={() => createPoll(request)}
+        createPoll={() =>
+          createPoll(request).then(this.props.history.push("/pollList"))
+        }
       />
     );
   }

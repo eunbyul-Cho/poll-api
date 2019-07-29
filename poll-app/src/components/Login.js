@@ -17,7 +17,7 @@ const Login = props => {
           onChange={handleInputChange}
         />
         <input
-          type="text"
+          type="password"
           placeholder="password"
           name="password"
           maxLength="50"

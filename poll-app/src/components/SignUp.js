@@ -20,14 +20,14 @@ const SignUp = props => {
           onChange={handleInputChange}
         />
         <input
-          type="text"
+          type="password"
           name="password"
           placeholder="password"
           maxLength="50"
           onChange={handleInputChange}
         />
         <input
-          type="text"
+          type="password"
           name="passwordConfirmation"
           placeholder="passwordConfirmation"
           maxLength="50"

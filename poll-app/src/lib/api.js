@@ -1,7 +1,7 @@
 import axios from "axios";
 let token = "Bearer " + localStorage.getItem("jwt");
 
-let aws = "https://pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com";
+let aws = "http://pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com";
 
 export default {
   getPolls: () => {
@@ -25,8 +25,9 @@ export default {
       .catch(error => {
         throw error;
       }),
-  vote: candidateId =>
-    axios
+  vote: candidateId => {
+    token = "Bearer " + localStorage.getItem("jwt");
+    return axios
       .put(
         `${aws}/api/candidates/${candidateId}`,
 
@@ -38,7 +39,8 @@ export default {
       .then(response => response)
       .catch(error => {
         throw error;
-      }),
+      });
+  },
   createPoll: request =>
     axios
       .post(`${aws}/api/polls`, request, { headers: { Authorization: token } })
@@ -65,18 +67,9 @@ export default {
         throw error;
       }),
   login: request => {
-    let url = `${aws}/auth/login`;
-    console.log(url);
-    let urlarr = url.split("/");
-    urlarr.splice(2, 1);
-    console.log(urlarr.join(""));
     return axios
-      .post(
-        `pollEnv.pewgvymnw4.us-west-2.elasticbeanstalk.com/auth/login`,
-        request
-      )
+      .post(`${aws}/auth/login`, request)
       .then(response => {
-        console.log(response);
         return response.data;
       })
       .catch(error => {
@@ -87,7 +80,6 @@ export default {
     axios
       .post(`${aws}/signup`, request)
       .then(response => {
-        console.log(response);
         return response.data;
       })
       .catch(error => {

@@ -10,3 +10,8 @@ poll-api.zip
         poll-api/.ebextensions/
         poll-api/config/database aws.yml
         poll-api/config/database local.yml
+
+*.pem
+*.key
+*.crt
+*.csr
