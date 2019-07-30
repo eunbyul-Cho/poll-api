@@ -12,8 +12,6 @@ class LoginContainer extends Component {
   };
 
   login = () => {
-    const { getPolls } = this.props.Actions;
-
     const request = {
       email: this.state.email,
       password: this.state.password
@@ -30,7 +28,7 @@ class LoginContainer extends Component {
 
         alert("logged in");
         this.props.location.props.toggleLogIn();
-        getPolls();
+
         this.props.history.push("/pollList");
       })
       .catch(error => {
