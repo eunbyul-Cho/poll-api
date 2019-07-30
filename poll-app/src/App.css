@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: "Roboto";
 }
 
 .App-logo {
@@ -18,31 +19,190 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+h1 {
+  margin-left: 2em;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 70px;
 }
 .detail-header {
+  text-align: center;
   font-size: 1.5em;
+  justify-self: center;
+  margin-bottom: 1.5em;
 }
 .candidates-container {
-  margin: 10px;
+  margin: 3em;
+  display: flex;
+  justify-content: center;
+  height: 100%;
 }
 .candidate-container {
   display: flex;
+  max-width: 300px;
 }
 ul {
   display: flex;
 }
 li {
   margin-left: 30px;
+}
+.inputContainer {
+  padding: 5%;
+  max-width: 768px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  flex-flow: center;
+  text-align: center;
+  margin: 60px auto;
+}
+.create_poll_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #d7d1c9;
+}
+.modalContainer {
+  background-color: #faf5ef;
+  padding: 1.5em;
+  max-width: 480px;
+  max-height: 480px;
+  width: 45%;
+  height: 45%;
+  display: flex;
+  flex-direction: column;
+  border: solid 3px #faf5ef;
+  flex-flow: center;
+  margin: 12em auto;
+}
+.create_poll {
+  margin-bottom: 10px;
+}
+
+.submitBtn {
+  display: block;
+  font-size: 0.875em;
+  font-weight: bold;
+  outline: none;
+  margin-top: 1em;
+  padding: 20px 35px;
+  border: solid 2px #474544;
+  padding: 20px 35px;
+  text-align: center;
+}
+.submitBtn:hover {
+  background-color: #239f95 !important;
+}
+
+input {
+  border: none;
+
+  background-color: transparent;
+  border-bottom: solid 0.5px #474544;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0em 0 1.875em 0;
+  padding: 0 0 0.875em 0;
+}
+.close {
+  position: absolute;
+  font-size: 1.5em;
+  font-weight: 900;
+  background-color: transparent;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border: none;
+}
+.poll-listContainer {
+  display: flex;
+  margin-left: 4em;
+  margin-top: 25px;
+}
+.poll_list_item {
+  max-width: 600px;
+  margin-right: 30px;
+  margin-top: 30px;
+  display: block;
+}
+.nav-container {
+  display: flex;
+  width: 100%;
+  position: fixed;
+  top: 50px;
+  left: 30px;
+}
+.nav-item {
+  min-width: 50px;
+  font-weight: 500;
+  margin: 0 15px;
+  font-size: 16px;
+  display: inline-block;
+}
+
+.candidates-result-list {
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.candidate-item {
+  min-height: 50px;
+  font-size: 1.2em;
+}
+.mypoll_item {
+  display: flex;
+}
+.deleteBtn {
+  display: inline-block;
+  max-width: 80px;
+  border: 2px solid !important;
+  border-radius: 5px;
+  margin-top: 30px;
+  font-size: 0.8em;
+  padding: 3px;
+  text-align: center;
+}
+.loginfirst {
+  margin-left: 20px;
+}
+.deleteBtn:hover {
+  background-color: #ff5722 !important;
+}
+.poll_list_name {
+  font-size: 1em;
+}
+.poll_list_name-container {
+  padding: 1px;
+}
+.logoutBtn {
+  display: block;
+  font-size: 0.875em;
+  font-weight: bold;
+  outline: none;
+  margin-top: 1em;
+  padding: 20px 35px;
+  border: solid 2px #474544;
+  padding: 20px 35px;
+  text-align: center;
+}
+.logoutBtn:hover {
+  background-color: #ff5722 !important;
 }

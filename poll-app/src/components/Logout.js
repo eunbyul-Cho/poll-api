@@ -7,7 +7,9 @@ const Logout = props => {
     <>
       <div className="inputContainer">
         Are you sure you want to log out?
-        <button onClick={logout}>logout???</button>
+        <button className="logoutBtn" onClick={logout}>
+          LOGOUT
+        </button>
       </div>
     </>
   );

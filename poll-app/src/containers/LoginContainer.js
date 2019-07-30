@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import api from "../lib/api.js";
 import Login from "../components/Login.js";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as actions from "../actions/index.js";
 
 class LoginContainer extends Component {
   state = {
@@ -9,6 +12,8 @@ class LoginContainer extends Component {
   };
 
   login = () => {
+    const { getPolls } = this.props.Actions;
+
     const request = {
       email: this.state.email,
       password: this.state.password
@@ -25,9 +30,13 @@ class LoginContainer extends Component {
 
         alert("logged in");
         this.props.location.props.toggleLogIn();
+        getPolls();
         this.props.history.push("/pollList");
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        alert("Authentication failed");
+        console.log(error);
+      });
   };
 
   handleInputChange = event => {
@@ -54,5 +63,13 @@ class LoginContainer extends Component {
     }
   }
 }
-
-export default LoginContainer;
+export default connect(
+  state => ({
+    polls: state.polls.polls,
+    loading: state.pender.pending["GET_POLLS"],
+    error: state.pender.failure["GET_POLLS"]
+  }),
+  dispatch => ({
+    Actions: bindActionCreators(actions, dispatch)
+  })
+)(LoginContainer);

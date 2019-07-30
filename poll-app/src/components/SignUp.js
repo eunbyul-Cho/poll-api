@@ -33,7 +33,7 @@ const SignUp = props => {
           maxLength="50"
           onChange={handleInputChange}
         />
-        <button onClick={signup}>submit</button>
+        <input onClick={signup} className="submitBtn" value="SIGN UP" />
       </div>
     </>
   );

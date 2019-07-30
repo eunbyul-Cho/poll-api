@@ -24,7 +24,7 @@ const Chart = props => {
   };
   return (
     <>
-      <Doughnut data={data} />
+      <Doughnut data={data} width={500} height={500} />
     </>
   );
 };

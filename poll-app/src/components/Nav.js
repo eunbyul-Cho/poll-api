@@ -5,14 +5,17 @@ const Nav = props => {
   const auth = props.isLoggedIn ? "logout" : "login";
 
   return (
-    <ul>
-      <li>
+    <nav
+      className="
+    nav-container"
+    >
+      <div className="nav-item">
         <Link to="/">Home</Link>
-      </li>
-      <li>
+      </div>
+      <div className="nav-item">
         <Link to="pollList">Polls</Link>
-      </li>
-      <li>
+      </div>
+      <div className="nav-item">
         <Link
           to={{
             pathname: `/${auth}`,
@@ -21,17 +24,17 @@ const Nav = props => {
         >
           {auth}{" "}
         </Link>
-      </li>
-      <li>
+      </div>
+      <div className="nav-item">
         <Link to="/signup">SignUp</Link>
-      </li>
-      <li>
+      </div>
+      <div className="nav-item">
         <Link to="/createPoll">CreatePoll</Link>
-      </li>
-      <li>
-        <Link to="/myPoll">MyPoll</Link>
-      </li>
-    </ul>
+      </div>
+      <div className="nav-item">
+        <Link to="/myPoll">MyPolls</Link>
+      </div>
+    </nav>
   );
 };
 

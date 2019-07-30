@@ -1,41 +1,54 @@
 import React from "react";
 
 const CreatePoll = props => {
-  const { handleInputChange, createPoll } = props;
+  const { handleInputChange, createPoll, handleModalClose } = props;
   return (
-    <>
-      <div className="inputContainer">
+    <div className="create_poll_container">
+      <div className="modalContainer">
+        <button className="close" onClick={handleModalClose}>
+          X
+        </button>
+        <h1>CREATE POLL</h1>
         <input
+          className="create_poll"
           type="text"
-          placeholder="pollName"
+          placeholder="PollName"
           name="name"
           maxLength="50"
           onChange={handleInputChange}
         />
         <input
+          className="create_poll"
           type="text"
-          placeholder="candidate1"
+          placeholder="Candidate1"
           name="candidate1"
           maxLength="50"
           onChange={handleInputChange}
         />
         <input
+          className="create_poll"
           type="text"
-          placeholder="candidate2"
+          placeholder="Candidate2"
           name="candidate2"
           maxLength="50"
           onChange={handleInputChange}
         />
         <input
+          className="create_poll"
           type="text"
-          placeholder="candidate3"
+          placeholder="Candidate3"
           name="candidate3"
           maxLength="50"
           onChange={handleInputChange}
         />
-        <button onClick={createPoll}>submit</button>
+        <input
+          type="submit"
+          onClick={createPoll}
+          className="submitBtn"
+          value="SUBMIT"
+        />
       </div>
-    </>
+    </div>
   );
 };
 export default CreatePoll;

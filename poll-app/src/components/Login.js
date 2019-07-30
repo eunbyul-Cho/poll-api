@@ -1,11 +1,8 @@
 import React from "react";
 
 const Login = props => {
-  const { handleInputChange, login, isLoggedIn } = props;
+  const { handleInputChange, login } = props;
 
-  if (isLoggedIn) {
-    return <div>You are LoggedIn now</div>;
-  }
   return (
     <>
       <div className="inputContainer">
@@ -23,7 +20,12 @@ const Login = props => {
           maxLength="50"
           onChange={handleInputChange}
         />
-        <button onClick={login}>submit</button>
+        <input
+          onClick={login}
+          type="submit"
+          className="submitBtn"
+          value="SUBMIT"
+        />
       </div>
     </>
   );

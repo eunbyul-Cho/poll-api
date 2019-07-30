@@ -21,7 +21,9 @@ class CreatePollContainer extends Component {
       [name]: target.value
     });
   };
-
+  handleModalClose = () => {
+    this.props.history.push("/pollList");
+  };
   render() {
     const candidates_attributes = [
       { name: this.state.candidate1, count: 0 },
@@ -36,15 +38,18 @@ class CreatePollContainer extends Component {
       }
     };
     const { name } = this.state;
-    const { createPoll } = this.props.Actions;
+    const { createPoll, getPolls } = this.props.Actions;
     return (
       <CreatePoll
+        handleModalClose={this.handleModalClose}
         name={name}
         handleInputChange={this.handleInputChange}
         handleNameChange={this.handleNameChange}
         handleCandidateChange={this.handleCandidateChange}
         createPoll={() =>
-          createPoll(request).then(this.props.history.push("/pollList"))
+          createPoll(request)
+            .then(getPolls())
+            .then(this.props.history.push("/pollList"))
         }
       />
     );

@@ -27,13 +27,15 @@ const AppRouter = props => (
     <Route path="/pollList" component={PollListContainer} />
     <Route
       path="/login"
-      component={LoginContainer}
-      toggleLogIn={props.toggleLogIn}
+      render={props => (
+        <LoginContainer {...props} toggleLogIn={props.toggleLogIn} />
+      )}
     />
     <Route
       path="/logout"
-      component={LogoutContainer}
-      toggleLogIn={props.toggleLogIn}
+      render={props => (
+        <LogoutContainer {...props} toggleLogIn={props.toggleLogIn} />
+      )}
     />
     <Route path="/detail" component={DetailContainer} />
     <Route path="/signup" component={SignUpContainer} />
@@ -43,12 +45,18 @@ const AppRouter = props => (
 );
 class Main extends Component {
   state = {
-    isLoggedIn: localStorage.jwt ? true : false
+    isLoggedIn: localStorage.jwt ? true : false,
+    modalShow: false
   };
   toggleLogIn = () => {
     this.setState({ isLoggedIn: !this.state.isLoggedIn });
   };
+  toggleModal = () => {
+    const { modalShow } = this.state;
+    this.setState({ modalShow: !modalShow });
+  };
   render() {
+    const { modalShow, isLoggedIn } = this.state;
     return (
       <Router>
         <NavContainer
@@ -57,7 +65,9 @@ class Main extends Component {
         />
         <div className="container">
           <AppRouter
-            isLoggedIn={this.state.isLoggedIn}
+            toggleModal={this.toggleModal}
+            modalShow={modalShow}
+            isLoggedIn={isLoggedIn}
             toggleLogIn={this.toggleLogIn}
           />
         </div>

@@ -8,15 +8,22 @@ const MyPoll = props => {
   }
   return (
     <>
-      <h1>My Poll List</h1>
+      <h1>My Poll Lists</h1>
+      <div className="poll-listContainer">
+        <div className="listWrapper">
+          {polls.map(poll => (
+            <div key={poll.name} className="mypoll_item">
+              <PollItem poll={poll} />
 
-      <div className="listWrapper">
-        {polls.map(poll => (
-          <div key={poll.name}>
-            <PollItem poll={poll} />
-            <button onClick={() => props.deletePoll(poll.id)}>delete</button>
-          </div>
-        ))}
+              <input
+                type="submit"
+                className="deleteBtn"
+                onClick={() => props.deletePoll(poll.id)}
+                value="DELETE"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );

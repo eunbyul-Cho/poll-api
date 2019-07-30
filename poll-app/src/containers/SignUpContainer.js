@@ -26,8 +26,12 @@ class SignUpContainer extends Component {
         this.setState({
           inputValue: ""
         });
+        this.props.history.push("/pollList");
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        alert("Enter name, email, password");
+        console.log(error);
+      });
   };
 
   handleInputChange = event => {

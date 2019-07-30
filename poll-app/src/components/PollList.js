@@ -12,12 +12,13 @@ const PollList = props => {
   }
   return (
     <>
-      <h1>Poll List</h1>
-
-      <div className="listWrapper">
-        {polls.map(poll => (
-          <PollItem poll={poll} key={poll.name} />
-        ))}
+      <h1>Poll Lists</h1>
+      <div className="poll-listContainer">
+        <div className="listWrapper">
+          {polls.map(poll => (
+            <PollItem poll={poll} key={poll.name} />
+          ))}
+        </div>
       </div>
     </>
   );
